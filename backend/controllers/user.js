@@ -43,7 +43,7 @@ exports.login = ( req, res, next ) => {
             function ( err, result ) {
                 if ( result == '' ) {
                     console.log( "pas de resultat" )
-                    res.status( 200 ).json( 'erreur' )
+                    res.status( 200 ).json( 'erreur, adresse non disponible dans la base' )
                 } else {
                     bcrypt.compare( req.body.password, result[ 0 ].mdp )
                         .then( valid => {

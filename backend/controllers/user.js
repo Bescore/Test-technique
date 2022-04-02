@@ -1,5 +1,7 @@
-const connection = require( "../mysql/db" )
+const connection = require( "../mysql/db" );
 const bcrypt = require( 'bcrypt' );
+const jwt = require( 'jsonwebtoken' );
+
 
 
 
@@ -36,23 +38,25 @@ exports.login = ( req, res, next ) => {
     const mail = reg_email.test( req.body.email );
     if ( pass == false || mail == false ) {
 
-        res.status( 200 ).json( "mauvaises entrées" )
+        res.status( 401 ).json( "mauvaises entrées" )
         console.log( "mauvaises données" )
     } else {
         connection.execute( `SELECT mail,mdp,idusers FROM users WHERE mail=?`, [ `${ req.body.email }` ],
             function ( err, result ) {
                 if ( result == '' ) {
                     console.log( "pas de resultat" )
-                    res.status( 200 ).json( 'erreur, adresse non disponible dans la base' )
+                    res.status( 400 ).json( 'erreur, adresse non disponible dans la base' )
                 } else {
                     bcrypt.compare( req.body.password, result[ 0 ].mdp )
                         .then( valid => {
                             if ( !valid ) {
-                                return res.status( 401 ).json( { error: "mdp inccorect" } );
+                                return res.status( 401 ).json( { error: "mot de passe inccorect" } );
                             }
                             res.status( 200 ).json( {
                                 userId: result[ 0 ].idusers,
-                                token: "TOKEN"
+                                token: jwt.sign(
+                                    { uerdId: result[ 0 ].idusers},'RANDOM_TOKEN_SECRET',{expiresIn:'1800s'}
+                                )
                             } )
                         } )
                         .catch( error => res.status( 500 ).json( { error } ) );

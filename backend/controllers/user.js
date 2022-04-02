@@ -55,13 +55,13 @@ exports.login = ( req, res, next ) => {
                             res.status( 200 ).json( {
                                 userId: result[ 0 ].idusers,
                                 token: jwt.sign(
-                                    { uerdId: result[ 0 ].idusers},'RANDOM_TOKEN_SECRET',{expiresIn:'1800s'}
+                                    { uerdId: result[ 0 ].idusers }, 'RANDOM_TOKEN_SECRET', { expiresIn: '1800s' }
                                 )
                             } )
                         } )
                         .catch( error => res.status( 500 ).json( { error } ) );
                     console.log( result )
-                
+
                 }
             } )
     }

@@ -3,36 +3,62 @@ const bcrypt = require( 'bcrypt' );
 
 
 
-exports.signup = ( req, res, next ) => {
+exports.signup = async ( req, res, next ) => {
     //contrôle d'entrées
     const reg_password = /(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?!.*\s)(?=.*[!@#$*])/;
     const reg_email = /^[a-zA-Z0-9._%-]+@[a-zA-Z0-9.-]+.[a-zA-Z]{2,4}$/;
     const reg_nom = /^[a-zA-Z]+$/;
     const reg_prenom = /^[a-zA-Z]+$/;
-    const pass =reg_password.test( req.body.password );
-    const mail =reg_email.test( req.body.email );
-    const nom =reg_nom.test( req.body.nom );
-    const pren =reg_prenom.test( req.body.prenom );
-    if ( pass == false || mail == false || nom == false|| pren == false ) {
+    const pass = reg_password.test( req.body.password );
+    const mail = reg_email.test( req.body.email );
+    const nom = reg_nom.test( req.body.nom );
+    const pren = reg_prenom.test( req.body.prenom );
+    if ( pass == false || mail == false || nom == false || pren == false ) {
         res.status( 200 ).json( "mauvaises entrées" )
-        console.log("mauvaises données")
+        console.log( "mauvaises données" )
     } else {
-    
-        bcrypt.hash( req.body.password, 10 )
-            .then( response => {
-                console.log( response )
-                connection.execute( `INSERT INTO users(nom,prenom,mail,mdp) VALUES(?,?,?,?)`, [ `${ req.body.nom }`, `${ req.body.prenom }`, `${ req.body.email }`, `${ response }` ],
-                    function ( err, result ) {
-                        console.log( req.body.password );
-                        res.status( 200 ).json( "mdp:créé" )
-
-                    } )
+        const hashed = await bcrypt.hash( req.body.password, 10 )
+        connection.execute( `INSERT INTO users(nom,prenom,mail,mdp) VALUES(?,?,?,?)`, [ `${ req.body.nom }`, `${ req.body.prenom }`, `${ req.body.email }`, `${ hashed }` ],
+            function ( err, result ) {
+                res.status( 200 ).json( "compte créé" )
             } )
-            .catch( error => res.status( 500 ).json( { error } ) )
+
+
 
     };
 }
 
 exports.login = ( req, res, next ) => {
 
+    const reg_password = /(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?!.*\s)(?=.*[!@#$*])/;
+    const reg_email = /^[a-zA-Z0-9._%-]+@[a-zA-Z0-9.-]+.[a-zA-Z]{2,4}$/;
+    const pass = reg_password.test( req.body.password );
+    const mail = reg_email.test( req.body.email );
+    if ( pass == false || mail == false ) {
+
+        res.status( 200 ).json( "mauvaises entrées" )
+        console.log( "mauvaises données" )
+    } else {
+        connection.execute( `SELECT mail,mdp,idusers FROM users WHERE mail=?`, [ `${ req.body.email }` ],
+            function ( err, result ) {
+                if ( result == '' ) {
+                    console.log( "pas de resultat" )
+                    res.status( 200 ).json( 'erreur' )
+                } else {
+                    bcrypt.compare( req.body.password, result[ 0 ].mdp )
+                        .then( valid => {
+                            if ( !valid ) {
+                                return res.status( 401 ).json( { error: "mdp inccorect" } );
+                            }
+                            res.status( 200 ).json( {
+                                userId: result[ 0 ].idusers,
+                                token: "TOKEN"
+                            } )
+                        } )
+                        .catch( error => res.status( 500 ).json( { error } ) );
+                    console.log( result )
+                
+                }
+            } )
+    }
 };

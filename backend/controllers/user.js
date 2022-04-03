@@ -67,6 +67,7 @@ exports.login = ( req, res, next ) => {
     }
 };
 
+//affichage infos d'utilisateur loggé
 exports.getMyinfos = ( req, res, next ) => { 
     //necessite le hash dans la base et l'userId
     connection.execute( `SELECT * FROM users WHERE idusers=? AND mdp=?`, [ `${ req.body.userId }`, `${ req.body.hash }` ],

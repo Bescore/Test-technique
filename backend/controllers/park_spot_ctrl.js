@@ -2,7 +2,7 @@ const connection = require( "../mysql/db" );
 
 
 
-//attribution de places / attendu(place: B2,userId:100)
+//attribution de places / attendu(place: B2,userId:100,time:2022-04-03 01:05:00)
 exports.getSpot = ( req, res, next ) => {
 
     connection.execute( `UPDATE test_tech_second.place_park SET disponibilité=?,occupation=?  WHERE idplace_park=?`, [ `${ req.body.userId }`, `${ req.body.time }`,`${req.body.place}` ],
@@ -26,11 +26,10 @@ exports.freeThespot = ( req, res, next ) => {
             connection.execute( `UPDATE test_tech_second.place_park SET disponibilité=?  WHERE disponibilité=?`, [ `0`, `${ req.body.userId }` ],
                 function hell( err, result ) {
                     if ( result == '' ) {
-
                         res.status( 400 ).json( 'erreur' )
                     } else {
-                        //temps passé sur la place
                         console.log( req.body )
+                        //temps passé sur la place
                         res.status( 200 ).json( resulted[0] )
                     }
                 } )

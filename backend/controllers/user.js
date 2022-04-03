@@ -66,3 +66,11 @@ exports.login = ( req, res, next ) => {
             } )
     }
 };
+
+exports.getMyinfos = ( req, res, next ) => { 
+    //necessite le hash dans la base et l'userId
+    connection.execute( `SELECT * FROM users WHERE idusers=? AND mdp=?`, [ `${ req.body.userId }`, `${ req.body.hash }` ],
+        function ( err, result ) {
+            res.status( 200 ).json( result[0] )
+        } )
+}

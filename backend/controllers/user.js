@@ -6,7 +6,7 @@ const jwt = require( 'jsonwebtoken' );
 
 
 exports.signup = async ( req, res, next ) => {
-    //contrôle d'entrées
+    //vérification d'entrées
     const reg_password = /(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?!.*\s)(?=.*[!@#$*])/;
     const reg_email = /^[a-zA-Z0-9._%-]+@[a-zA-Z0-9.-]+.[a-zA-Z]{2,4}$/;
     const reg_nom = /^[a-zA-Z]+$/;
@@ -20,10 +20,11 @@ exports.signup = async ( req, res, next ) => {
         console.log( "mauvaises données" )
     } else {
         const hashed = await bcrypt.hash( req.body.password, 10 )
-        connection.execute( `INSERT INTO users(nom,prenom,mail,mdp) VALUES(?,?,?,?)`, [ `${ req.body.nom }`, `${ req.body.prenom }`, `${ req.body.email }`, `${ hashed }` ],
+        connection.execute( `INSERT INTO users(nom,prenom,mail,mdp,active) VALUES(?,?,?,?,?)`, [ `${ req.body.nom }`, `${ req.body.prenom }`, `${ req.body.email }`, `${ hashed }`, `1` ],
             function ( err, result ) {
                 res.status( 200 ).json( "compte créé" )
-            } )
+            }
+        )
 
 
 
@@ -31,7 +32,7 @@ exports.signup = async ( req, res, next ) => {
 }
 
 exports.login = ( req, res, next ) => {
-    //verification des entrées
+    //verification d'entrées
     const reg_password = /(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?!.*\s)(?=.*[!@#$*])/;
     const reg_email = /^[a-zA-Z0-9._%-]+@[a-zA-Z0-9.-]+.[a-zA-Z]{2,4}$/;
     const pass = reg_password.test( req.body.password );
@@ -63,17 +64,20 @@ exports.login = ( req, res, next ) => {
                     console.log( result )
 
                 }
-            } )
+            }
+        )
     }
 };
 
-//affichage infos d'utilisateur loggué
-exports.getMyinfos = ( req, res, next ) => { 
+//affichage infos  compte utilisateur 
+
+exports.getMyinfos = ( req, res, next ) => {
     //necessite le hash dans la base et l'userId
     connection.execute( `SELECT * FROM users WHERE idusers=? AND mdp=?`, [ `${ req.body.userId }`, `${ req.body.hash }` ],
         function ( err, result ) {
-            res.status( 200 ).json( result[0] )
-        } )
+            res.status( 200 ).json( result[ 0 ] )
+        }
+    )
 }
 
 //changer les informations utilisateurs
@@ -94,6 +98,7 @@ exports.changeMyinfos = ( req, res, next ) => {
             function ( err, result ) {
                 console.log( req.body )
                 res.status( 200 ).json( "informations changées" )
-            } )
+            }
+        )
     }
 }

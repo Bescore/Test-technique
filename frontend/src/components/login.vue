@@ -12,6 +12,7 @@
             <hr>
 			<input type="text" id="email" placeholder="Mail" /><br />
 			<input type="text" id="password" placeholder="Mot de passe" /><br />
+			<input class="btn" type="submit">
 		</form>
 		<form action="">
 			<p>S'inscrire</p>
@@ -20,6 +21,7 @@
 			<input type="text" id="firstname_ins" placeholder="Prenom" /><br />
 			<input type="text" id="email_ins" placeholder="Mail" /><br />
 			<input type="text" id="password_ins" placeholder="Mot de passe" /><br />
+			<input  type="submit" value="C'est partie !">
 		</form>
 	</div>
 </template>
@@ -35,7 +37,7 @@ export default {
 
 <style>
 .container {
-	padding: 20px 10px;
+	padding: 2px 10px;
     background-color: #FECD45;
     border-radius:20px ;
 }

@@ -16,10 +16,10 @@
 		<form action="">
 			<p>S'inscrire</p>
             <hr>
-			<input type="text" id="name" placeholder="Nom" /><br />
-			<input type="text" id="firstname" placeholder="Prenom" /><br />
-			<input type="text" id="email" placeholder="Mail" /><br />
-			<input type="text" id="password" placeholder="Mot de passe" /><br />
+			<input type="text" id="name_ins" placeholder="Nom" /><br />
+			<input type="text" id="firstname_ins" placeholder="Prenom" /><br />
+			<input type="text" id="email_ins" placeholder="Mail" /><br />
+			<input type="text" id="password_ins" placeholder="Mot de passe" /><br />
 		</form>
 	</div>
 </template>

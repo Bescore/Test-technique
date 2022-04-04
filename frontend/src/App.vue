@@ -19,7 +19,7 @@
 }
 
 nav {
-	padding: 30px;
+	padding: 25px;
 }
 
 nav a {

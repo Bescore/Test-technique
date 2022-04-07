@@ -8,7 +8,7 @@ export default {
 name: 'log',
   components: {
     login
-  }
+  },
 }
 </script>
 

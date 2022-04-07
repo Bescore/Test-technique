@@ -20,17 +20,27 @@ exports.signup = async ( req, res, next ) => {
         console.log( "mauvaises données" )
     } else {
         const hashed = await bcrypt.hash( req.body.password, 10 )
+
         connection.execute( `INSERT INTO users(nom,prenom,mail,mdp,active) VALUES(?,?,?,?,?)`, [ `${ req.body.nom }`, `${ req.body.prenom }`, `${ req.body.email }`, `${ hashed }`, `1` ],
             function ( err, result ) {
-                res.status( 200 ).json( "compte créé" )
-            }
-        )
+                console.log( result )
+
+                connection.execute( `SELECT idusers from users WHERE idusers=?`, [ `${ req.body.email }` ],
+                    function ( err, resulted ) {
+                        res.status( 200 ).json( { 
+                            token: jwt.sign(
+                                { userdId: resulted.idusers }, 'RANDOM_TOKEN_SECRET', { expiresIn: '1800s' } )
+                        } )
 
 
 
-    };
+
+                    } )
+
+
+            } )
+    }
 }
-
 exports.login = ( req, res, next ) => {
     //verification d'entrées
     const reg_password = /(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?!.*\s)(?=.*[!@#$*])/;
@@ -56,7 +66,7 @@ exports.login = ( req, res, next ) => {
                             res.status( 200 ).json( {
                                 userId: result[ 0 ].idusers,
                                 token: jwt.sign(
-                                    { uerdId: result[ 0 ].idusers }, 'RANDOM_TOKEN_SECRET', { expiresIn: '1800s' }
+                                    { userdId: result[ 0 ].idusers }, 'RANDOM_TOKEN_SECRET', { expiresIn: '1800s' }
                                 )
                             } )
                         } )

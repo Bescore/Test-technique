@@ -11,6 +11,6 @@ const userRoutes=require('./routes/user_r')
 
 
 
-app.use( '/api/test', parkRoutes );
+app.use( '/api/test/', parkRoutes );
 app.use( '/api/auth', userRoutes );
 module.exports = app;

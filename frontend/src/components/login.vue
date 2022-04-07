@@ -17,7 +17,7 @@
 				id="password"
 				placeholder="Mot de passe"
 			/><br />
-			<input @click="geten()" class="btn" type="submit" />
+			<input @click="login()" class="btn" type="submit" />
 		</form>
 		<form v-on:submit.prevent>
 			<p>S'inscrire</p>
@@ -41,13 +41,13 @@
 				id="password_ins"
 				placeholder="Mot de passe"
 			/><br />
-			<input @click="signup()"  type="submit" value="C'est partie !" />
+			<input @click="signup()" type="submit" value="C'est partie !" />
 		</form>
 	</div>
 </template>
 
 <script>
-import axios from 'axios';
+import axios from "axios";
 export default {
 	name: "login",
 	props: {
@@ -64,23 +64,36 @@ export default {
 		};
 	},
 	methods: {
-		 async signup() {
-			 const response=  await axios.post('api/auth/signup',{
-				  nom :this.nom,
-				  prenom: this.prenom,
-				  email:this.mail2,
-				  password:this.password2
-			  })
-			  const token=response.data.token
-			 localStorage.setItem('secret',token)
-			 console.log(localStorage.getItem('secret'))
-			 if (localStorage.getItem('secret')===token){
-				 this.$router.push('/home')
-			 }else{
-				 alert("mauvaises données")
-			 }
-			 console.log("la requête de création de compte et de token")
+		async signup() {
+			const response = await axios.post("api/auth/signup", {
+				nom: this.nom,
+				prenom: this.prenom,
+				email: this.mail2,
+				password: this.password2,
+			});
+			const token = response.data.token;
+			localStorage.setItem("secret", token);
+			if (localStorage.getItem("secret") === token) {
+				this.$router.push("/home");
+			} else {
+				alert("mauvaises données");
+			}
+			console.log("la requête de création de compte et de token");
 		},
+		async login(){
+			const response = await axios.post("api/auth/login",{
+				email:this.mail1,
+				password:this.password1,
+			});
+			localStorage.setItem("secret", response.data.token);
+			localStorage.setItem("othersecret",response.data.userId)
+			if(localStorage.getItem("secret")==response.data.token && localStorage.getItem("othersecret")==response.data.userId){
+				this.$router.push("/home");
+			}else{
+				alert("mauvaises données")
+			}
+			console.log(response.data)
+		}
 	},
 };
 </script>

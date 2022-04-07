@@ -74,7 +74,7 @@ export default {
 			const token = response.data.token;
 			localStorage.setItem("secret", token);
 			if (localStorage.getItem("secret") === token) {
-				this.$router.push("/home");
+				this.$router.push("/");
 			} else {
 				alert("mauvaises données");
 			}
@@ -88,7 +88,7 @@ export default {
 			localStorage.setItem("secret", response.data.token);
 			localStorage.setItem("othersecret",response.data.userId)
 			if(localStorage.getItem("secret")==response.data.token && localStorage.getItem("othersecret")==response.data.userId){
-				this.$router.push("/home");
+				this.$router.push("/");
 			}else{
 				alert("mauvaises données")
 			}

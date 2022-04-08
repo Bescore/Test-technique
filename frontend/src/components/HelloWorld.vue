@@ -18,8 +18,9 @@
 							<th>Etage</th>
 						</tr>
 					</thead>
-					<tr>
-						<td :key="index" v-for=" (Etage,index) in Etage">{{Etage}}</td>
+					<tr :key="index" v-for=" (Etage,index) in Etage">
+						<td >{{place}}</td>
+						<td>{{Etage}}</td>
 					</tr>
 				</table>
 			</div>
@@ -44,18 +45,25 @@ export default {
 	name: "HelloWorld",
   data(){
     return{
-      Etage:undefined,
+      Etage:null,
       place:null
       
     }
   },
   methods:{
     async getAll(){
+		var floor=[];
+		const tage=[]
       const response=await axios.get('api/test/')
-      console.log(response)
-      }
+	  for await (let item of response.data){
+		 floor.push(item.etage);
+		 this.Etage=floor
+	  }
+	},
+	
+ 
   }
-};
+}
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->

@@ -4,14 +4,14 @@ const connection = require( "../mysql/db" );
 
 //attribution de places / attendu(place: B2,userId:100,time:2022-04-03 01:05:00)
 exports.getSpot = ( req, res, next ) => {
-    connection.execute( `SELECT disponibilité FROM place_park  WHERE idplace_park=?`, [  `${ req.body.place }` ],
+    connection.execute( `SELECT disponibilité FROM new_place  WHERE idnew_place=?`, [  `${ req.body.place }` ],
         function ( err, result ) {
             console.log(result)
             if ( result[0].disponibilité !== 0) {
 
                 res.status( 400 ).json( 'place non disponible' )
             } else {
-                connection.execute( `UPDATE place_park SET disponibilité=?,occupation=?  WHERE idplace_park=?`, [ `${ req.body.userId }`, `${ req.body.time }`, `${ req.body.place }` ],
+                connection.execute( `UPDATE new_place SET disponibilité=?,occupation=?  WHERE idnew_place=?`, [ `${ req.body.userId }`, `${ req.body.time }`, `${ req.body.place }` ],
                     function ( err, resulted ) {
                         if ( resulted == '' ) {
 
@@ -33,9 +33,9 @@ exports.getSpot = ( req, res, next ) => {
 //libération de la place
 
 exports.freeThespot = ( req, res, next ) => {
-    connection.execute( `SELECT timediff(now(),occupation) FROM test_tech_second.place_park WHERE disponibilité=?`, [ `${ req.body.userId }` ],
+    connection.execute( `SELECT timediff(now(),occupation) FROM test_tech_second.new_place WHERE disponibilité=?`, [ `${ req.body.userId }` ],
         function ( err, resulted ) {
-            connection.execute( `UPDATE test_tech_second.place_park SET disponibilité=?  WHERE disponibilité=?`, [ `0`, `${ req.body.userId }` ],
+            connection.execute( `UPDATE test_tech_second.new_place SET disponibilité=?  WHERE disponibilité=?`, [ `0`, `${ req.body.userId }` ],
                 function hell ( err, result ) {
                     if ( result == '' ) {
                         res.status( 400 ).json( 'erreur' )
@@ -54,7 +54,7 @@ exports.freeThespot = ( req, res, next ) => {
 
 //places disponibles
 exports.findEmpty = ( req, res, next ) => {
-    connection.execute( `SELECT idplace_park,etage FROM test_tech_second.place_park WHERE disponibilité= ?` , [ `0` ],
+    connection.execute( `SELECT idnew_place,etage,nom_de_place FROM test_tech_second.new_place WHERE disponibilité= ?` , [ `0` ],
         function ( err, result ) {
             
             if ( result == '' ) {
@@ -68,7 +68,7 @@ exports.findEmpty = ( req, res, next ) => {
 }
 //durée d'occupation/ attendu (userId)
 exports.timeRemaining = ( req, res, next ) => {
-    connection.execute( `SELECT timediff(now(),occupation) FROM test_tech_second.place_park WHERE disponibilité=?`, [ `${ req.body.userId }` ],
+    connection.execute( `SELECT timediff(now(),occupation) FROM test_tech_second.new_place WHERE disponibilité=?`, [ `${ req.body.userId }` ],
         function ( err, result ) {
             if ( result == '' ) {
                 console.log( req.body )

@@ -1,5 +1,3 @@
-CREATE DATABASE  IF NOT EXISTS `test_tech_second` /*!40100 DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci */ /*!80016 DEFAULT ENCRYPTION='N' */;
-USE `test_tech_second`;
 -- MySQL dump 10.13  Distrib 8.0.27, for Win64 (x86_64)
 --
 -- Host: localhost    Database: test_tech_second
@@ -55,6 +53,7 @@ CREATE TABLE `place_park` (
   `idplace_park` varchar(2) NOT NULL,
   `etage` int NOT NULL,
   `assigné` int DEFAULT NULL,
+  `disponibilité` int DEFAULT '0',
   PRIMARY KEY (`idplace_park`),
   UNIQUE KEY `idplace_park_UNIQUE` (`idplace_park`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
@@ -66,7 +65,7 @@ CREATE TABLE `place_park` (
 
 LOCK TABLES `place_park` WRITE;
 /*!40000 ALTER TABLE `place_park` DISABLE KEYS */;
-INSERT INTO `place_park` VALUES ('A1',1,NULL),('A2',1,NULL),('A3',1,NULL),('A4',1,NULL),('A5',1,NULL),('B1',2,NULL),('B2',2,NULL),('B3',2,NULL),('B4',2,NULL),('B5',2,NULL),('C1',3,NULL),('C2',3,NULL),('C3',3,NULL),('C4',3,NULL),('C5',3,NULL);
+INSERT INTO `place_park` VALUES ('A1',1,NULL,0),('A2',1,NULL,0),('A3',1,NULL,0),('A4',1,NULL,0),('A5',1,NULL,0),('B1',2,NULL,0),('B2',2,NULL,0),('B3',2,NULL,0),('B4',2,NULL,0),('B5',2,NULL,0),('C1',3,NULL,0),('C2',3,NULL,0),('C3',3,NULL,0),('C4',3,NULL,0),('C5',3,NULL,0);
 /*!40000 ALTER TABLE `place_park` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -110,4 +109,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2022-04-08 16:54:57
+-- Dump completed on 2022-04-08 18:29:23

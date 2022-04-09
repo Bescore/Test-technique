@@ -80,20 +80,23 @@ export default {
 			}
 			console.log("la requête de création de compte et de token");
 		},
-		async login(){
-			const response = await axios.post("api/auth/login",{
-				email:this.mail1,
-				password:this.password1,
+		async login() {
+			const response = await axios.post("api/auth/login", {
+				email: this.mail1,
+				password: this.password1,
 			});
 			localStorage.setItem("secret", response.data.token);
-			localStorage.setItem("othersecret",response.data.userId)
-			if(localStorage.getItem("secret")==response.data.token && localStorage.getItem("othersecret")==response.data.userId){
+			localStorage.setItem("othersecret", response.data.userId);
+			if (
+				localStorage.getItem("secret") == response.data.token &&
+				localStorage.getItem("othersecret") == response.data.userId
+			) {
 				this.$router.push("/");
-			}else{
-				alert("mauvaises données")
+			} else {
+				alert("mauvaises données");
 			}
-			console.log(response.data)
-		}
+			console.log(response.data);
+		},
 	},
 };
 </script>

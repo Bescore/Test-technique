@@ -160,6 +160,7 @@ export default {
 				place: this.selected,
 				userId: localStorage.getItem("othersecret"),
 			});
+			this.$router.push("/compte")
 			if (response.data == "place non disponible") {
 				alert("cette place de parking n'est pas disponible");
 			}

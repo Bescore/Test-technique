@@ -7,4 +7,5 @@ router.put( '/freespot', park_ctrl.freeThespot )
 router.get( '/', park_ctrl.findEmpty );
 router.post( '/emp_floor', park_ctrl.findEmptyby_floor );
 router.post( '/time', park_ctrl.timeRemaining );
+router.post( '/verifs', park_ctrl.amIparked );
 module.exports = router;

@@ -43,6 +43,7 @@
 			/><br />
 			<input @click="signup()" type="submit" value="C'est partie !" />
 		</form>
+		<footer>© Copyright 2022 Jm.Lator. All rights reserved.</footer>
 	</div>
 </template>
 

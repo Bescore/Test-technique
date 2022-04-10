@@ -27,7 +27,7 @@ exports.signup = async ( req, res, next ) => {
 
                 connection.execute( `SELECT idusers from users WHERE idusers=?`, [ `${ req.body.email }` ],
                     function ( err, resulted ) {
-                        res.status( 200 ).json( { 
+                        res.status( 200 ).json( {
                             token: jwt.sign(
                                 { userdId: resulted.idusers }, 'RANDOM_TOKEN_SECRET', { expiresIn: '1800s' } )
                         } )

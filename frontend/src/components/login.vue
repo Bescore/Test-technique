@@ -75,7 +75,7 @@ export default {
 			const token = response.data.token;
 			localStorage.setItem("secret", token);
 			if (localStorage.getItem("secret") === token) {
-				this.$router.push("/");
+				this.$router.push("/home");
 			} else {
 				alert("mauvaises données");
 			}

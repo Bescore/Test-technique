@@ -3,7 +3,8 @@
 		<nav>
 			<router-link to="/home">Home</router-link> |
 			<router-link to="/compte">Compte</router-link> |
-      <router-link to="/">Login/Register</router-link>
+			<router-link to="/">Login/Register</router-link> |
+			<router-link to="/transition">transit</router-link>
 		</nav>
 		<router-view />
 	</div>
@@ -27,6 +28,6 @@ nav a {
 }
 
 nav a.router-link-exact-active {
-	color: #2568FB;
+	color: #2568fb;
 }
 </style>

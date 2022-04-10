@@ -2,7 +2,7 @@ import Vue from 'vue'
 import VueRouter from 'vue-router'
 import HomeView from '../views/HomeView.vue'
 
-Vue.use(VueRouter)
+Vue.use( VueRouter )
 
 const routes = [
   {
@@ -13,21 +13,26 @@ const routes = [
   {
     path: '/compte',
     name: 'compteview',
-    component: () => import(/* webpackChunkName: "about" */ '../views/compte.vue')
+    component: () => import(/* webpackChunkName: "about" */ '../views/compte.vue' )
+  },
+  {
+    path: '/transition',
+    name: 'trantview',
+    component: () => import(/* webpackChunkName: "about" */ '../views/transition.vue' )
   },
 
   {
     path: '/',
     name: 'log',
-    component: () => import(/* webpackChunkName: "about" */ '../views/login.vue')
+    component: () => import(/* webpackChunkName: "about" */ '../views/login.vue' )
   }
 
 ]
 
-const router = new VueRouter({
+const router = new VueRouter( {
   mode: 'history',
   base: process.env.BASE_URL,
   routes
-})
+} )
 
 export default router

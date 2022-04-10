@@ -1,10 +1,10 @@
 <template>
 	<div class="containers">
 		<h2>Garez-vous !</h2>
-		<div  class="sub_contains">
+		<div class="sub_contains">
 			<h4>Quelles sont les places disponible?</h4>
 
-			<div  class="div_place">
+			<div class="div_place">
 				<form v-on:submit.prevent>
 					<input
 						class="recherche"
@@ -24,6 +24,7 @@
 				</p>
 				<form v-on:submit.prevent>
 					<input
+						@click="getThisSpot()"
 						type="submit"
 						class="validate"
 						value="Se garer à cette place"
@@ -31,8 +32,8 @@
 				</form>
 			</div>
 			<div id="sub"></div>
-			<div  class="div_etage">
-				<form  v-on:submit.prevent id="par_etage">
+			<div class="div_etage">
+				<form v-on:submit.prevent id="par_etage">
 					<form class="form_radio">
 						<label for="radio_1">1</label>
 						<input
@@ -112,7 +113,7 @@ export default {
 			"fr-Fr",
 			options
 		)}</div>`;
-		const net=document.getElementById('sub')
+		const net = document.getElementById("sub");
 		net.appendChild(date);
 	},
 	name: "HelloWorld",
@@ -139,7 +140,6 @@ export default {
 			const plac = [];
 			const response = await axios.get("api/test/");
 			response.data.map((element) => {
-				console.log(element);
 				plac.push(element.nom_de_place);
 				this.place = plac;
 			});
@@ -154,6 +154,15 @@ export default {
 				this.place_par_etage = floor_plac;
 				console.log(this.selected);
 			});
+		},
+		async getThisSpot() {
+			const response = await axios.put("api/test/spot", {
+				place: this.selected,
+				userId: localStorage.getItem("othersecret"),
+			});
+			if (response.data == "place non disponible") {
+				alert("cette place de parking n'est pas disponible");
+			}
 		},
 	},
 };
@@ -238,7 +247,7 @@ form#par_etage .recherche {
 .validate:hover {
 	transform: scale(1.1);
 }
-footer{
+footer {
 	padding: 10px;
 }
 </style>

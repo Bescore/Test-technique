@@ -4,21 +4,20 @@ const connection = require( "../mysql/db" );
 
 //attribution de places / attendu(place: B2,userId:100,time:2022-04-03 01:05:00)
 exports.getSpot = ( req, res, next ) => {
-    connection.execute( `SELECT disponibilité FROM new_place  WHERE idnew_place=?`, [ `${ req.body.place }` ],
+    connection.execute( `SELECT disponibilité FROM new_place  WHERE nom_de_place=?`, [ `${ req.body.place }` ],
         function ( err, result ) {
-            console.log( result )
-            if ( result[ 0 ].disponibilité !== 0 ) {
+            if ( result[ 0 ].disponibilité != 0 ) {
 
-                res.status( 400 ).json( 'place non disponible' )
+                res.status( 200 ).json( 'place non disponible' )
             } else {
-                connection.execute( `UPDATE new_place SET disponibilité=?,occupation=?  WHERE idnew_place=?`, [ `${ req.body.userId }`, `${ req.body.time }`, `${ req.body.place }` ],
-                    function ( err, resulted ) {
-                        if ( resulted == '' ) {
+                connection.execute( `UPDATE new_place SET disponibilité=?,occupation=now()  WHERE nom_de_place=?`, [ `${ req.body.userId }`, `${ req.body.place }` ],
+                    function ( err, resultat ) {
+                        if ( resultat == '' ) {
 
                             res.status( 400 ).json( 'erreur' )
                         } else {
-                            console.log( req.body )
-                            res.status( 200 ).json( "place attribué" )
+                            console.log( resultat[0] )
+                            res.status( 200 ).json( "place attribuée" )
                         }
                     }
                 )

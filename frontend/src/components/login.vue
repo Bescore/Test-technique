@@ -92,7 +92,7 @@ export default {
 				localStorage.getItem("secret") == response.data.token &&
 				localStorage.getItem("othersecret") == response.data.userId
 			) {
-				this.$router.push("/");
+				this.$router.push("/home");
 			} else {
 				alert("mauvaises données");
 			}

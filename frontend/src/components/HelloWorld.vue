@@ -160,7 +160,7 @@ export default {
 				place: this.selected,
 				userId: localStorage.getItem("othersecret"),
 			});
-			this.$router.push("/compte")
+			this.$router.push("/compte");
 			if (response.data == "place non disponible") {
 				alert("cette place de parking n'est pas disponible");
 			}
@@ -180,7 +180,8 @@ h2 {
 	border-radius: 20px;
 	padding: 15px;
 	z-index: 0;
-	box-shadow: rgba(0, 0, 0, 0.3) 0px 19px 38px, rgba(0, 0, 0, 0.22) 0px 15px 12px;
+	box-shadow: rgba(0, 0, 0, 0.3) 0px 19px 38px,
+		rgba(0, 0, 0, 0.22) 0px 15px 12px;
 }
 
 select option {

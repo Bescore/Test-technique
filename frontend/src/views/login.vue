@@ -1,17 +1,15 @@
 <template>
-  <login hell= "NOPE"/>
+	<login hell="NOPE" />
 </template>
 
 <script>
-import login from '@/components/login.vue'
+import login from "@/components/login.vue";
 export default {
-name: 'log',
-  components: {
-    login
-  },
-}
+	name: "log",
+	components: {
+		login,
+	},
+};
 </script>
 
-<style>
-
-</style>
+<style></style>

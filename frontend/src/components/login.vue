@@ -107,7 +107,8 @@ export default {
 	padding: 2px 10px;
 	background-color: #fecd45;
 	border-radius: 20px;
-	box-shadow: rgba(0, 0, 0, 0.3) 0px 19px 38px, rgba(0, 0, 0, 0.22) 0px 15px 12px;
+	box-shadow: rgba(0, 0, 0, 0.3) 0px 19px 38px,
+		rgba(0, 0, 0, 0.22) 0px 15px 12px;
 }
 figure div img {
 	margin: 10px;

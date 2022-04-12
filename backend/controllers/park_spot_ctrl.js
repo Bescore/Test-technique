@@ -16,7 +16,7 @@ exports.getSpot = ( req, res, next ) => {
 
                             res.status( 400 ).json( 'erreur' )
                         } else {
-                            console.log( resultat[0] )
+                            console.log( resultat[ 0 ] )
                             res.status( 200 ).json( "place attribuée" )
                         }
                     }
@@ -68,10 +68,10 @@ exports.findEmpty = ( req, res, next ) => {
 
 //places disponibles par étages
 exports.findEmptyby_floor = ( req, res, next ) => {
-    connection.execute( `SELECT idnew_place,etage,nom_de_place FROM test_tech_second.new_place WHERE disponibilité= ? AND etage=?`, [ `0`,`${req.body.etage}` ],
+    connection.execute( `SELECT idnew_place,etage,nom_de_place FROM test_tech_second.new_place WHERE disponibilité= ? AND etage=?`, [ `0`, `${ req.body.etage }` ],
         function ( err, result ) {
 
-            if ( result == '' || req.body.etage==null) {
+            if ( result == '' || req.body.etage == null ) {
                 console.log( req.body )
                 res.status( 400 ).json( 'mauvaises entrées' )
             } else {
@@ -107,8 +107,8 @@ exports.amIparked = ( req, res, next ) => {
                 console.log( req.body )
                 res.status( 200 ).json( "no" )
             } else {
-                res.status( 200 ).json( "yes")
+                res.status( 200 ).json( "yes" )
             }
 
-        })
+        } )
 }

@@ -1,5 +1,5 @@
 <template>
-  <h1>KAKALA</h1>
+  <h1>compte</h1>
 </template>
 
 <script>

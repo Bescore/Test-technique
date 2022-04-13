@@ -1,14 +1,34 @@
 <template>
 	<div id="app">
-		<nav>
-			<router-link to="/home">Home</router-link> 
-			<router-link to="/compte">Compte</router-link> 
-			<router-link to="/">Login/Register</router-link> 
+		<div class="phoneMenu_cont">
+			<div @click="phoneMenu()" class="burger">
+				<hr />
+				<hr />
+				<hr />
+			</div>
+		</div>
+		<nav class="navigo">
+			<router-link to="/home">Home</router-link>
+			<router-link to="/compte">Compte</router-link>
+			<router-link to="/">Login/Register</router-link>
 		</nav>
 		<router-view />
-		<div class="burger"><hr><hr><hr></div>
 	</div>
 </template>
+
+<script>
+export default {
+	data() {
+		return {};
+	},
+	methods: {
+		phoneMenu() {
+			const burg = document.querySelector("nav");
+			burg.classList.toggle("navigo");
+		},
+	},
+};
+</script>
 
 <style>
 #app {
@@ -20,29 +40,66 @@
 }
 nav {
 	padding: 25px;
-	border: 2px blue solid;
 	display: flex;
 	align-items: flex-start;
-	justify-content: center;
+	border-radius: 20px;
+	background-color: #2568fb;
+	justify-content: space-around;
 	flex-direction: column;
 	width: 30%;
-	height: 10vh;
-	position: relative;
+	height: 20vh;
+	margin: auto;
+	position: fixed;
+	top: 0;
+	left: 0;
+	bottom: 0;
+	right: 0;
+	transform: scale(0);
+	transition: 300ms ease-in;
+}
+.navigo {
+	padding: 25px;
+	display: flex;
+	align-items: flex-start;
+	border-radius: 20px;
+	background-color: #2568fb;
+	border: solid 1px black;
+	justify-content: space-around;
+	flex-direction: column;
+	width: 35%;
+	height: 20vh;
+	margin: auto;
+	position: fixed;
+	top: 0;
+	left: 0;
+	bottom: 0;
+	right: 0;
+	transform: scale(1);
+	transition: 300ms ease-in;
 }
 
 nav a {
 	font-weight: bold;
-	color: #2c3e50;
+	color: #fecd45;
+	text-decoration: none;
 }
 
 nav a.router-link-exact-active {
-	color: #2568fb;
+	color: #dbfb25;
 }
-.burger{
-position: fixed;
-top:5px;
-left: 5px;
-background-color: red;
-width: 5vh;
+.burger {
+	padding: 2px;
+	position: sticky;
+	top: 10px;
+	width: 5vh;
+}
+.burger hr {
+	border: #2568fb 1px solid;
+}
+.phoneMenu_cont {
+	background-color: #fecd45;
+	padding: 10px;
+	position: sticky;
+	top: 0;
 }
 </style>

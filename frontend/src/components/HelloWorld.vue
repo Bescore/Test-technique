@@ -172,12 +172,13 @@ export default {
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
 h2 {
-	margin-top: 0px;
+	background-color: #2568fb;
+	margin: auto;
 	transition: 200ms ease-out;
+	color: #fecd45;
 }
 .sub_contains {
 	background-color: #fecd45;
-	border-radius: 20px;
 	padding: 15px;
 	z-index: 0;
 	box-shadow: rgba(0, 0, 0, 0.3) 0px 19px 38px,

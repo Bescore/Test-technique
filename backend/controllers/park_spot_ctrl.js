@@ -16,7 +16,7 @@ exports.getSpot = ( req, res, next ) => {
 
                             res.status( 400 ).json( 'erreur' )
                         } else {
-                            console.log( resultat[ 0 ] )
+                            
                             res.status( 200 ).json( "place attribuée" )
                         }
                     }
@@ -39,7 +39,6 @@ exports.freeThespot = ( req, res, next ) => {
                     if ( result == '' ) {
                         res.status( 400 ).json( 'erreur' )
                     } else {
-                        console.log( req.body )
                         //temps passé sur la place
                         res.status( 200 ).json( resulted[ 0 ] )
                     }
@@ -57,7 +56,7 @@ exports.findEmpty = ( req, res, next ) => {
         function ( err, result ) {
 
             if ( result == '' ) {
-                console.log( req.body )
+                
                 res.status( 400 ).json( 'erreur, parking plein' )
             } else {
                 res.status( 200 ).json( result )
@@ -72,7 +71,7 @@ exports.findEmptyby_floor = ( req, res, next ) => {
         function ( err, result ) {
 
             if ( result == '' || req.body.etage == null ) {
-                console.log( req.body )
+                
                 res.status( 400 ).json( 'mauvaises entrées' )
             } else {
                 res.status( 200 ).json( result )
@@ -91,7 +90,7 @@ exports.timeRemaining = ( req, res, next ) => {
     connection.execute( `SELECT timediff(now(),occupation) FROM new_place WHERE disponibilité=?`, [ `${ req.body.userId }` ],
         function ( err, result ) {
             if ( result == '' ) {
-                console.log( req.body )
+                
                 res.status( 400 ).json( "cette utilisateur n'existe pas" )
             } else {
                 res.status( 200 ).json( result[ 0 ] )
@@ -104,7 +103,7 @@ exports.amIparked = ( req, res, next ) => {
     connection.execute( `SELECT * FROM new_place WHERE disponibilité=?`, [ `${ req.body.userId }` ],
         function ( err, result ) {
             if ( result == '' ) {
-                console.log( req.body )
+                
                 res.status( 200 ).json( "no" )
             } else {
                 res.status( 200 ).json( "yes" )

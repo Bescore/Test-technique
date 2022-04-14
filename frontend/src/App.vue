@@ -7,7 +7,7 @@
 				<hr />
 			</div>
 		</div>
-		<nav class="navigo">
+		<nav>
 			<router-link to="/home">Home</router-link>
 			<router-link to="/compte">Compte</router-link>
 			<router-link to="/">Login/Register</router-link>

@@ -32,9 +32,9 @@ exports.getSpot = ( req, res, next ) => {
 //libération de la place
 
 exports.freeThespot = ( req, res, next ) => {
-    connection.execute( `SELECT timediff(now(),occupation) FROM test_tech_second.new_place WHERE disponibilité=?`, [ `${ req.body.userId }` ],
+    connection.execute( `SELECT timediff(now(),occupation) FROM new_place WHERE disponibilité=?`, [ `${ req.body.userId }` ],
         function ( err, resulted ) {
-            connection.execute( `UPDATE test_tech_second.new_place SET disponibilité=?  WHERE disponibilité=?`, [ `0`, `${ req.body.userId }` ],
+            connection.execute( `UPDATE new_place SET disponibilité=?  WHERE disponibilité=?`, [ `0`, `${ req.body.userId }` ],
                 function hell ( err, result ) {
                     if ( result == '' ) {
                         res.status( 400 ).json( 'erreur' )
@@ -53,7 +53,7 @@ exports.freeThespot = ( req, res, next ) => {
 
 //places disponibles
 exports.findEmpty = ( req, res, next ) => {
-    connection.execute( `SELECT idnew_place,etage,nom_de_place FROM test_tech_second.new_place WHERE disponibilité= ?`, [ `0` ],
+    connection.execute( `SELECT idnew_place,etage,nom_de_place FROM new_place WHERE disponibilité= ?`, [ `0` ],
         function ( err, result ) {
 
             if ( result == '' ) {
@@ -68,7 +68,7 @@ exports.findEmpty = ( req, res, next ) => {
 
 //places disponibles par étages
 exports.findEmptyby_floor = ( req, res, next ) => {
-    connection.execute( `SELECT idnew_place,etage,nom_de_place FROM test_tech_second.new_place WHERE disponibilité= ? AND etage=?`, [ `0`, `${ req.body.etage }` ],
+    connection.execute( `SELECT idnew_place,etage,nom_de_place FROM new_place WHERE disponibilité= ? AND etage=?`, [ `0`, `${ req.body.etage }` ],
         function ( err, result ) {
 
             if ( result == '' || req.body.etage == null ) {
@@ -88,7 +88,7 @@ exports.findEmptyby_floor = ( req, res, next ) => {
 
 //durée d'occupation/ attendu (userId)
 exports.timeRemaining = ( req, res, next ) => {
-    connection.execute( `SELECT timediff(now(),occupation) FROM test_tech_second.new_place WHERE disponibilité=?`, [ `${ req.body.userId }` ],
+    connection.execute( `SELECT timediff(now(),occupation) FROM new_place WHERE disponibilité=?`, [ `${ req.body.userId }` ],
         function ( err, result ) {
             if ( result == '' ) {
                 console.log( req.body )
@@ -101,7 +101,7 @@ exports.timeRemaining = ( req, res, next ) => {
 
 //cette route va vérifier si l'utilisateur a déjà un véhicule garé.
 exports.amIparked = ( req, res, next ) => {
-    connection.execute( `SELECT * FROM test_tech_second.new_place WHERE disponibilité=?`, [ `${ req.body.userId }` ],
+    connection.execute( `SELECT * FROM new_place WHERE disponibilité=?`, [ `${ req.body.userId }` ],
         function ( err, result ) {
             if ( result == '' ) {
                 console.log( req.body )

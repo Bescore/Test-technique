@@ -5,3 +5,10 @@ module.exports = defineConfig({
     port: 8080
 }
 })
+module.exports = {
+  pwa: {
+      workboxOptions: {
+        exclude: [/_redirects/]
+      }
+    }
+}

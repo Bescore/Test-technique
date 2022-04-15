@@ -29,7 +29,7 @@ export default {
 			} else {
 				this.$router.push("/");
 			}
-		}, 5000);
+		}, 4000);
 	},
 };
 </script>

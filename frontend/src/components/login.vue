@@ -5,9 +5,9 @@
 			<div>
 				<img src="@/assets/parked.svg" alt="image" />
 			</div>
-			<figcaption>Garez-vous dans la minute !</figcaption>
+			<figcaption @click="connectDisplay()" id=caption>Cliquez ici pour nous rejoindre</figcaption>
 		</figure>
-		<form v-on:submit.prevent>
+		<form v-on:submit.prevent class="connecter">
 			<p>Se connecter</p>
 			<hr />
 			<input v-model="mail1" type="text" id="email" placeholder="Mail" /><br />
@@ -19,7 +19,7 @@
 			/><br />
 			<input @click="login()" class="btn" type="submit" />
 		</form>
-		<form v-on:submit.prevent>
+		<form v-on:submit.prevent  class="inscrire">
 			<p>S'inscrire</p>
 			<hr />
 			<input v-model="nom" type="text" id="name_ins" placeholder="Nom" /><br />
@@ -99,21 +99,27 @@ export default {
 			}
 			console.log(response.data);
 		},
+		connectDisplay(){
+			
+				document.querySelector(".connecter").classList.toggle("connecter_2")
+				document.querySelector(".inscrire").classList.toggle("inscrire_2")
+			
+		}
 	},
 };
 </script>
 
 <style scoped>
+
 .container {
 	padding: 2px 10px;
 	background-color: #fecd45;
-	box-shadow: rgba(0, 0, 0, 0.3) 0px 19px 38px,
-		rgba(0, 0, 0, 0.22) 0px 15px 12px;
+	height: 92vh
 }
 figure div img {
 	margin: 10px;
 	width: 120px;
-	height: 120px;
+	height: 80px;
 }
 
 form {
@@ -127,8 +133,9 @@ form {
 form input {
 	margin: 1vh;
 	outline: 0;
-	border-radius: 5px;
-	height: 1.8vh;
+	border-radius: 2px;
+	height: 4vh;
+	width: 80%;
 	border: none;
 }
 form input::placeholder {
@@ -146,5 +153,27 @@ form:hover > hr {
 	display: block;
 	width: 100px;
 	border: 3px solid #f3f3f3;
+}
+.connecter{
+	transition: 300ms ease;
+	display: none;
+}
+.connecter_2{
+	transition: 300ms ease-out;
+	display: block;
+}
+.inscrire{
+	transition: 300ms ease;
+	display: block;
+}
+.inscrire_2{
+	transition: 300ms ease-out;
+	display: none;
+}
+footer{
+	position: absolute;
+	bottom: 0;
+	text-align: center;
+	color:#2568fb;
 }
 </style>

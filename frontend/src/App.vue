@@ -31,6 +31,9 @@ export default {
 </script>
 
 <style>
+body {
+	margin: 0 !important;
+}
 #app {
 	font-family: Avenir, Helvetica, Arial, sans-serif;
 	-webkit-font-smoothing: antialiased;
@@ -42,41 +45,37 @@ nav {
 	padding: 25px;
 	display: flex;
 	align-items: flex-start;
-	border-radius: 20px;
 	background-color: #2568fb;
-	justify-content: space-around;
+	justify-content: center;
+	gap: 40px;
 	flex-direction: column;
-	width: 30%;
-	height: 20vh;
+	width: 40%;
+	height: 100%;
 	margin: auto;
 	position: fixed;
 	top: 0;
-	left: 0;
-	bottom: 0;
 	right: 0;
-	transform: scale(0);
-	transition: 300ms ease-in;
+	transform: translateX(100%);
+	transition: 200ms ease-out;
 }
 .navigo {
 	padding: 25px;
 	display: flex;
 	align-items: flex-start;
-	border-radius: 20px;
 	background-color: #2568fb;
-	border: solid 1px black;
-	justify-content: space-around;
+	gap: 40px;
+	justify-content: center;
 	flex-direction: column;
-	width: 35%;
-	height: 20vh;
+	width: 40%;
+	height: 100%;
 	margin: auto;
 	position: fixed;
 	top: 0;
 	left: 0;
-	bottom: 0;
-	right: 0;
-	transform: scale(1);
-	transition: 300ms ease-in;
+	transform: translateX(50%);
+	transition: 200ms ease;
 }
+
 
 nav a {
 	font-weight: bold;

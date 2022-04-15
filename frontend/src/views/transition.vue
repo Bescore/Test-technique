@@ -35,6 +35,9 @@ export default {
 </script>
 
 <style scoped>
+body{
+	margin: 0 !important;
+}
 .loader img {
 	width: 100%;
 	margin: 0 auto;
@@ -51,9 +54,8 @@ span {
 	display: flex;
 	justify-content: center;
 	flex-direction: column;
-	height: 80vh;
+	height: 92.5vh;
 	background-color: #fecd45;
-	border-radius: 20px;
 	box-shadow: rgba(0, 0, 0, 0.3) 0px 19px 38px,
 		rgba(0, 0, 0, 0.22) 0px 15px 12px;
 }

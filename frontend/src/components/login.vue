@@ -72,6 +72,7 @@ export default {
 				email: this.mail2,
 				password: this.password2,
 			});
+			console.log(this.mail2)
 			const token = response.data.token;
 			localStorage.setItem("secret", token);
 			if (localStorage.getItem("secret") === token) {

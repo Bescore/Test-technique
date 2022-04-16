@@ -7,5 +7,6 @@ router.post( '/signup', userCtrl.signup );
 router.post( '/login', userCtrl.login );
 router.post( '/myAccount', userCtrl.getMyinfos );
 router.put( '/changeInfos', userCtrl.changeMyinfos );
+router.post( '/myPlace', userCtrl.getMySpotInfos );
 
 module.exports = router;

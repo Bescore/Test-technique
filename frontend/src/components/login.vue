@@ -82,9 +82,11 @@ export default {
 				email: this.mail2,
 				password: this.password2,
 			});
-			console.log(this.mail2);
+			console.log(response.data);
 			const token = response.data.token;
+			const userId=response.data.userId
 			localStorage.setItem("secret", token);
+			localStorage.setItem("othersecret", userId);
 			if (localStorage.getItem("secret") === token) {
 				this.$store.dispatch("incstate");
 				this.$router.push("/transition");

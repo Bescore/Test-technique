@@ -17,22 +17,21 @@ exports.signup = async ( req, res, next ) => {
     const pren = reg_prenom.test( req.body.prenom );
     if ( pass == false || mail == false || nom == false || pren == false ) {
         res.status( 200 ).json( "mauvaises entrées" )
-        console.log( "mauvaises données" )
     } else {
         const hashed = await bcrypt.hash( req.body.password, 10 )
 
         connection.execute( `INSERT INTO users(nom,prenom,mail,mdp,active) VALUES(?,?,?,?,?)`, [ `${ req.body.nom }`, `${ req.body.prenom }`, `${ req.body.email }`, `${ hashed }`, `1` ],
             function ( err, result ) {
-                console.log( result )
-
-                connection.execute( `SELECT idusers from users WHERE idusers=?`, [ `${ req.body.email }` ],
-                    function ( err, resulted ) {
-                        console.log( resulted )
-                        res.status( 200 ).json( {
-                            token: jwt.sign(
-                                { userdId: resulted.idusers }, 'RANDOM_TOKEN_SECRET', { expiresIn: '1800s' } )
-                        } )
+                if ( err ) {
+                    res.status( 200 ).json( "adresse présente dans la base" )
+                } else {
+                    console.log( result )
+                    res.status( 200 ).json( {
+                        token: jwt.sign(
+                            { userdId: result.insertId }, 'RANDOM_TOKEN_SECRET', { expiresIn: '1800s' } ),
+                        userId: result.insertId
                     } )
+                }
             } )
     }
 }
@@ -78,12 +77,23 @@ exports.login = ( req, res, next ) => {
 
 exports.getMyinfos = ( req, res, next ) => {
     //necessite le hash dans la base et l'userId
-    connection.execute( `SELECT * FROM users WHERE idusers=? AND mdp=?`, [ `${ req.body.userId }`, `${ req.body.hash }` ],
+    connection.execute( `SELECT * FROM users WHERE idusers=? `, [ `${ req.body.userId }` ],
         function ( err, result ) {
-            res.status( 200 ).json( result[ 0 ] )
+            res.status( 200 ).json( result )
         }
     )
 }
+
+//afficher les informations de la place acquise par l'utilisateur
+
+exports.getMySpotInfos = ( req, res, next ) => {
+    connection.execute( `SELECT * FROM new_place C,users U WHERE C.disponibilité=? AND u.idusers=?`, [ `${ req.body.userId }`,`${ req.body.userId }` ],
+    function ( err, resulted ) {
+        res.status( 200 ).json( resulted )
+    }
+)
+}
+
 
 //changer les informations utilisateurs
 

@@ -8,7 +8,10 @@
 			</div>
 		</div>
 		<nav>
-			<router-link to="/home">Home</router-link>
+			<router-link v-if="isconnected == false" to="/home"
+				>Home</router-link
+			>
+			<router-link v-else @click.native="logOut()" to="/">se déconnecter</router-link>
 			<router-link to="/compte">Compte</router-link>
 			<router-link to="/">Login/Register</router-link>
 		</nav>
@@ -17,15 +20,25 @@
 </template>
 
 <script>
+import {mapState }from 'vuex'
 export default {
 	data() {
-		return {};
+		return {}
+	},
+	computed:{
+		...mapState(['isconnected'])
 	},
 	methods: {
 		phoneMenu() {
 			const burg = document.querySelector("nav");
 			burg.classList.toggle("navigo");
 		},
+		logOut(){
+			this.$store.dispatch('deccstate')
+			localStorage.removeItem('secret')
+			localStorage.removeItem('othersecret')
+			alert("vous vous êtes deconnecté")
+		}
 	},
 };
 </script>
@@ -75,7 +88,6 @@ nav {
 	transform: translateX(50%);
 	transition: 200ms ease;
 }
-
 
 nav a {
 	font-weight: bold;

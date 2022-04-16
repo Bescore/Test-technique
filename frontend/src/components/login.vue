@@ -5,7 +5,9 @@
 			<div>
 				<img src="@/assets/parked.svg" alt="image" />
 			</div>
-			<figcaption @click="connectDisplay()" id=caption>Cliquez ici pour nous rejoindre</figcaption>
+			<figcaption @click="connectDisplay()" id="caption">
+				Cliquez ici pour nous rejoindre
+			</figcaption>
 		</figure>
 		<form v-on:submit.prevent class="connecter">
 			<p>Se connecter</p>
@@ -19,7 +21,7 @@
 			/><br />
 			<input @click="login()" class="btn" type="submit" />
 		</form>
-		<form v-on:submit.prevent  class="inscrire">
+		<form v-on:submit.prevent class="inscrire">
 			<p>S'inscrire</p>
 			<hr />
 			<input v-model="nom" type="text" id="name_ins" placeholder="Nom" /><br />
@@ -54,6 +56,14 @@ export default {
 	props: {
 		hell: String,
 	},
+	computed: {
+		isconnectedX() {
+			return this.$store.state.isconnected;
+		},
+		incremented() {
+			this.$store.getters.incremented;
+		},
+	},
 	data() {
 		return {
 			mail1: "",
@@ -72,10 +82,11 @@ export default {
 				email: this.mail2,
 				password: this.password2,
 			});
-			console.log(this.mail2)
+			console.log(this.mail2);
 			const token = response.data.token;
 			localStorage.setItem("secret", token);
 			if (localStorage.getItem("secret") === token) {
+				this.$store.dispatch("incstate");
 				this.$router.push("/transition");
 			} else {
 				alert("mauvaises données");
@@ -99,22 +110,19 @@ export default {
 			}
 			console.log(response.data);
 		},
-		connectDisplay(){
-			
-				document.querySelector(".connecter").classList.toggle("connecter_2")
-				document.querySelector(".inscrire").classList.toggle("inscrire_2")
-			
-		}
+		connectDisplay() {
+			document.querySelector(".connecter").classList.toggle("connecter_2");
+			document.querySelector(".inscrire").classList.toggle("inscrire_2");
+		},
 	},
 };
 </script>
 
 <style scoped>
-
 .container {
 	padding: 2px 10px;
 	background-color: #fecd45;
-	height: 92vh
+	height: 92vh;
 }
 figure div img {
 	margin: 10px;
@@ -154,26 +162,26 @@ form:hover > hr {
 	width: 100px;
 	border: 3px solid #f3f3f3;
 }
-.connecter{
+.connecter {
 	transition: 300ms ease;
 	display: none;
 }
-.connecter_2{
+.connecter_2 {
 	transition: 300ms ease-out;
 	display: block;
 }
-.inscrire{
+.inscrire {
 	transition: 300ms ease;
 	display: block;
 }
-.inscrire_2{
+.inscrire_2 {
 	transition: 300ms ease-out;
 	display: none;
 }
-footer{
+footer {
 	position: absolute;
 	bottom: 0;
 	text-align: center;
-	color:#2568fb;
+	color: #2568fb;
 }
 </style>

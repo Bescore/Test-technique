@@ -19,9 +19,9 @@
 			<div>Email : {{ email }}</div>
 			<br />
 		</div>
-		<router-link to="/home">Se garer</router-link>
+		<router-link  class="se_garer" to="/home">Se garer</router-link>
 		<!-- cacher quand le compte détient une place-->
-		<div class="free_the_spot">
+		<div  class="free_the_spot">
 			<p>Libérer la place</p>
 		</div>
 	</div>
@@ -44,14 +44,18 @@ export default {
 			this.email = response.data[0].mail;
 		}
 	},
-	async mounted() {
+	async beforeMount() {
 		const response = await axios.post("api/auth/myPlace", {
 			userId: localStorage.getItem("othersecret"),
 		});
 		if (response.data[0] == undefined) {
 			this.$store.dispatch("decmaplace");
+			document.querySelector(".se_garer").style.display="flex"
+			document.querySelector(".free_the_spot").style.display="none"
 		} else {
 			this.$store.dispatch("getmaplace");
+			document.querySelector(".se_garer").style.display="none"
+			document.querySelector(".free_the_spot").style.display="flex"
 		}
 		console.log(response.data[0]);
 		this.place = response.data[0].nom_de_place;
@@ -103,7 +107,8 @@ h2 {
 .sous_titre_font {
 	font-size: 3rem;
 }
-.free_the_spot{
+
+.free_the_spot,.se_garer{
 	position :absolute;
 	bottom: 0;
 	display: flex;
@@ -114,5 +119,10 @@ h2 {
 	color: #fecd45;
 	font-weight: bold;
 	margin: auto auto;
+}
+.se_garer{
+	height: 5%;
+	text-decoration: none;
+	
 }
 </style>

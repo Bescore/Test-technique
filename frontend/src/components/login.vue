@@ -87,7 +87,7 @@ export default {
 			const userId=response.data.userId
 			localStorage.setItem("secret", token);
 			localStorage.setItem("othersecret", userId);
-			if (localStorage.getItem("secret") === token) {
+			if (localStorage.getItem("secret") == token) {
 				this.$store.dispatch("incstate");
 				this.$router.push("/transition");
 			} else {

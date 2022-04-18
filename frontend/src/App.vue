@@ -7,11 +7,11 @@
 				<hr />
 			</div>
 		</div>
-		<nav>
-			<router-link v-if="isconnected == false" to="/home"
-				>Home</router-link
+		<nav @click="hideNav()">
+			<router-link v-if="isconnected == false" to="/home">Home</router-link>
+			<router-link v-else @click.native="logOut()" to="/"
+				>se déconnecter</router-link
 			>
-			<router-link v-else @click.native="logOut()" to="/">se déconnecter</router-link>
 			<router-link to="/compte">Compte</router-link>
 			<router-link to="/">Login/Register</router-link>
 		</nav>
@@ -20,25 +20,32 @@
 </template>
 
 <script>
-import {mapState }from 'vuex'
+import { mapState } from "vuex";
 export default {
 	data() {
-		return {}
+		return {};
 	},
-	computed:{
-		...mapState(['isconnected'])
+	computed: {
+		...mapState(["isconnected"]),
 	},
 	methods: {
 		phoneMenu() {
 			const burg = document.querySelector("nav");
 			burg.classList.toggle("navigo");
+			
+
 		},
-		logOut(){
-			this.$store.dispatch('deccstate')
-			localStorage.removeItem('secret')
-			localStorage.removeItem('othersecret')
-			alert("vous vous êtes deconnecté")
-		}
+		hideNav(){
+			const burg = document.querySelector("nav");
+			burg.classList.toggle("navigo");
+			
+		},
+		logOut() {
+			this.$store.dispatch("deccstate");
+			localStorage.removeItem("secret");
+			localStorage.removeItem("othersecret");
+			alert("vous vous êtes deconnecté");
+		},
 	},
 };
 </script>
@@ -66,6 +73,7 @@ nav {
 	height: 100%;
 	margin: auto;
 	position: fixed;
+	z-index: 5;
 	top: 0;
 	right: 0;
 	transform: translateX(100%);
@@ -76,6 +84,7 @@ nav {
 	display: flex;
 	align-items: flex-start;
 	background-color: #2568fb;
+	z-index: 5;
 	gap: 40px;
 	justify-content: center;
 	flex-direction: column;

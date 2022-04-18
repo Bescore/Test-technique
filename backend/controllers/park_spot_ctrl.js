@@ -6,21 +6,25 @@ const connection = require( "../mysql/db" );
 exports.getSpot = ( req, res, next ) => {
     connection.execute( `SELECT disponibilité FROM new_place  WHERE nom_de_place=?`, [ `${ req.body.place }` ],
         function ( err, result ) {
-            if ( result[ 0 ].disponibilité != 0 ) {
-
-                res.status( 200 ).json( 'place non disponible' )
+            if ( !result[ 0 ] ) {
+                res.status( 200 ).json( 'erreur' )
             } else {
-                connection.execute( `UPDATE new_place SET disponibilité=?,occupation=now()  WHERE nom_de_place=?`, [ `${ req.body.userId }`, `${ req.body.place }` ],
-                    function ( err, resultat ) {
-                        if ( resultat == '' ) {
+                if ( result[ 0 ].disponibilité != 0 ) {
 
-                            res.status( 400 ).json( 'erreur' )
-                        } else {
-                            
-                            res.status( 200 ).json( "place attribuée" )
+                    res.status( 200 ).json( 'place non disponible' )
+                } else {
+                    connection.execute( `UPDATE new_place SET disponibilité=?,occupation=now()  WHERE nom_de_place=?`, [ `${ req.body.userId }`, `${ req.body.place }` ],
+                        function ( err, resultat ) {
+                            if ( resultat == '' ) {
+
+                                res.status( 400 ).json( 'erreur' )
+                            } else {
+
+                                res.status( 200 ).json( "place attribuée" )
+                            }
                         }
-                    }
-                )
+                    )
+                }
             }
         }
     )
@@ -39,8 +43,10 @@ exports.freeThespot = ( req, res, next ) => {
                     if ( result == '' ) {
                         res.status( 400 ).json( 'erreur' )
                     } else {
-                        //temps passé sur la place
-                        res.status( 200 ).json( resulted[ 0 ] )
+                        connection.execute( `INSERT INTO payment(durée,utilisateur) VALUES(?,?)`, [ resulted[ 0 ], `${ req.body.userId }` ],
+                            function ( err, resulting ) {
+                                res.status( 200 ).json( resulting )
+                            } )
                     }
                 } )
         }
@@ -56,7 +62,7 @@ exports.findEmpty = ( req, res, next ) => {
         function ( err, result ) {
 
             if ( result == '' ) {
-                
+
                 res.status( 400 ).json( 'erreur, parking plein' )
             } else {
                 res.status( 200 ).json( result )
@@ -71,7 +77,7 @@ exports.findEmptyby_floor = ( req, res, next ) => {
         function ( err, result ) {
 
             if ( result == '' || req.body.etage == null ) {
-                
+
                 res.status( 400 ).json( 'mauvaises entrées' )
             } else {
                 res.status( 200 ).json( result )
@@ -90,7 +96,7 @@ exports.timeRemaining = ( req, res, next ) => {
     connection.execute( `SELECT timediff(now(),occupation) FROM new_place WHERE disponibilité=?`, [ `${ req.body.userId }` ],
         function ( err, result ) {
             if ( result == '' ) {
-                
+
                 res.status( 400 ).json( "cette utilisateur n'existe pas" )
             } else {
                 res.status( 200 ).json( result[ 0 ] )
@@ -103,7 +109,7 @@ exports.amIparked = ( req, res, next ) => {
     connection.execute( `SELECT * FROM new_place WHERE disponibilité=?`, [ `${ req.body.userId }` ],
         function ( err, result ) {
             if ( result == '' ) {
-                
+
                 res.status( 200 ).json( "no" )
             } else {
                 res.status( 200 ).json( "yes" )

@@ -8,7 +8,7 @@
 			</div>
 		</div>
 		<nav @click="hideNav()">
-			<router-link v-if="isconnected == false" to="/home">Home</router-link>
+			<router-link v-if="isconnected == false" to="/home">Se garer</router-link>
 			<router-link v-else @click.native="logOut()" to="/"
 				>se déconnecter</router-link
 			>
@@ -105,7 +105,7 @@ nav a {
 }
 
 nav a.router-link-exact-active {
-	color: #dbfb25;
+	color: #edf0df;
 }
 .burger {
 	padding: 2px;

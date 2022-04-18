@@ -160,10 +160,15 @@ export default {
 				place: this.selected,
 				userId: localStorage.getItem("othersecret"),
 			});
-			this.$store.dispatch("incstate");
-			this.$router.push("/compte");
-			if (response.data == "place non disponible") {
-				alert("cette place de parking n'est pas disponible");
+			if (response.data == "erreur") {
+				alert("vous devez d'abord cliquer et rechercher les places disponible");
+			} else {
+				console.log(response);
+				this.$store.dispatch("incstate");
+				this.$router.push("/compte");
+				if (response.data == "place non disponible") {
+					alert("cette place de parking n'est pas disponible");
+				}
 			}
 		},
 	},

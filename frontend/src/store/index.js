@@ -5,7 +5,8 @@ Vue.use(Vuex)
 
 export default new Vuex.Store({
   state: {
-    isconnected:false
+    isconnected: false,
+    maplace:0
   },
   getters: {
     incremented (state) {
@@ -13,6 +14,12 @@ export default new Vuex.Store({
     }
   },
   mutations: {
+    GETMAPLACE ( state ) {
+      state.maplace=1
+    },
+    DECMAPLACE ( state ) {
+      state.maplace=0
+    },
     INCSTATEX ( state) {
       state.isconnected = true;
     },
@@ -21,6 +28,12 @@ export default new Vuex.Store({
     }
   },
   actions: {
+    getmaplace ( context ) {
+      context.commit( "GETMAPLACE" )
+    },
+    decmaplace ( context ) {
+      context.commit( "DECMAPLACE" )
+    },
     incstate ( context ) {
       context.commit( "INCSTATEX" )
     },

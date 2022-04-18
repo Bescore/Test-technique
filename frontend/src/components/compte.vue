@@ -3,8 +3,9 @@
 		<h2>Mon compte</h2>
 		<div class="spot_display">
 			<span class="sous_titre"> Où suis-je garé? </span>
-			<div class="spot_box">
-				<span class="sous_titre_font">{{ place }}</span>
+			<div   class="spot_box">
+				<span v-if="maplace!=0"  class="sous_titre_font">{{place}}</span>
+				<span v-else  class="sous_titre_font">Vous n'êtes pas garé</span>
 			</div>
 			<br />
 			<div>Etage : {{ etage }}</div>
@@ -24,6 +25,7 @@
 
 <script>
 import axios from "axios";
+import {mapState} from 'vuex'
 export default {
 	async created() {
 		if (!localStorage.getItem("othersecret")) {
@@ -42,9 +44,15 @@ export default {
 		const response = await axios.post("api/auth/myPlace", {
 			userId: localStorage.getItem("othersecret"),
 		})
+		if (response.data[0]==undefined){
+			this.$store.dispatch("decmaplace");
+		}else{
+			this.$store.dispatch("getmaplace");
+		}
 		console.log(response.data[0])
 		this.place=response.data[0].nom_de_place;
 		this.etage=response.data[0].etage
+		
 	},
 	data() {
 		return {
@@ -55,6 +63,9 @@ export default {
 			email: null,
 		};
 	},
+	computed:{
+		...mapState(['maplace'])
+	}
 };
 </script>
 
@@ -76,6 +87,7 @@ h2 {
 	display: flex;
 	justify-content: center;
 	align-items: center;
+	background: #f3f3f3;
 }
 .sous_titre_font {
 	font-size: 3rem;

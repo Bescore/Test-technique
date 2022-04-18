@@ -1,4 +1,4 @@
-const axios = require( 'axios' )
+import axios from 'axios'
 
 
 axios.defaults.baseURL = 'https://back-park.herokuapp.com';

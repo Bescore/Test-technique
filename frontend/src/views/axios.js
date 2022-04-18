@@ -1,7 +1,7 @@
 import axios from 'axios'
 
 
-axios.defaults.baseURL = 'https://back-park.herokuapp.com';
+axios.defaults.baseURL = 'http://localhost:3000';
 
-axios.defaults.headers.common[ 'Authorization' ] = 'Bearer ' 
+axios.defaults.headers.common[ 'Authorization' ] = 'Bearer ' + localStorage.getItem( 'token' );
 

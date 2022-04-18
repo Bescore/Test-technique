@@ -7,6 +7,7 @@ const connection = mysql.createConnection( {
     user: 'b8c3fcd9d7fdea',
     password: 'c6136b2a',   //changez les logs pour vous connecter à votre base en locale
     database: 'heroku_8cbd4da9ed10ba6',
+
 } );
 
 connection.connect( ( err ) => {
@@ -16,7 +17,9 @@ connection.connect( ( err ) => {
     }
     console.log( 'Base de donnée connectée !' );
 } );
-
+setInterval(function () {
+    connection.query( 'SELECT 1' );
+}, 5000);
 
 
 

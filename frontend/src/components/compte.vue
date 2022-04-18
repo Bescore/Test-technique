@@ -8,7 +8,7 @@
 				<span v-else class="sous_titre_font">Vous n'êtes pas garé</span>
 			</div>
 			<br />
-			<div>Etage : {{ etage }}</div>
+			<div class="Etage">Etage : {{ etage }}</div>
 		</div>
 		<h3>Mes informations</h3>
 		<div class="my_infos">
@@ -52,10 +52,12 @@ export default {
 			this.$store.dispatch("decmaplace");
 			document.querySelector(".se_garer").style.display="flex"
 			document.querySelector(".free_the_spot").style.display="none"
+			document.querySelector('.Etage').style.display="none"
 		} else {
 			this.$store.dispatch("getmaplace");
 			document.querySelector(".se_garer").style.display="none"
 			document.querySelector(".free_the_spot").style.display="flex"
+			document.querySelector('.Etage').style.display="block"
 		
 		console.log(response.data[0]);
 		this.place = response.data[0].nom_de_place;

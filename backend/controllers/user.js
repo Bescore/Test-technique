@@ -46,13 +46,15 @@ exports.login = ( req, res, next ) => {
         res.status( 401 ).json( "mauvaises entrées" )
         console.log( "mauvaises données" )
     } else {
-        connection.query( `SELECT mail,mdp,idusers FROM users WHERE mail=?`, [ `${ req.body.email }` ],
+        connection.execute( `SELECT mail,mdp,idusers FROM users WHERE mail=?`, [ `${ req.body.email }` ],
             function ( err, result ) {
+                if ( err ) {
+                    console.log(err)
+                }
                 if ( result == '' ) {
                     console.log( "pas de resultat" )
                     res.status( 400 ).json( 'erreur, adresse non disponible dans la base' )
                 } else {
-                    console.log(result[0])
                     bcrypt.compare( req.body.password, result[ 0 ].mdp )
                         .then( valid => {
                             if ( !valid ) {

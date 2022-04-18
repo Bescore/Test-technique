@@ -4,9 +4,9 @@ const mysql = require( 'mysql2' );
 // create the connection to database
 const connection = mysql.createConnection( {
     host: 'eu-cdbr-west-02.cleardb.net',
-    user: 'b27eb2e635d938',
-    password: 'c9726ecb',   //changez les logs pour vous connecter à votre base en locale
-    database: 'heroku_b7b959bf574bd7a',
+    user: 'b8c3fcd9d7fdea',
+    password: 'c6136b2a',   //changez les logs pour vous connecter à votre base en locale
+    database: 'heroku_8cbd4da9ed10ba6',
 } );
 
 connection.connect( ( err ) => {

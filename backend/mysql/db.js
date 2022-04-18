@@ -3,10 +3,10 @@ const mysql = require( 'mysql2' );
 
 // create the connection to database
 const connection = mysql.createConnection( {
-    host: 'localhost',
-    user: 'root',
-    password: 'carnibarge97',   //changez les logs pour vous connecter à votre base en locale
-    database: 'test_tech_second',
+    host: 'eu-cdbr-west-02.cleardb.net',
+    user: 'b27eb2e635d938',
+    password: 'c9726ecb',   //changez les logs pour vous connecter à votre base en locale
+    database: 'heroku_b7b959bf574bd7a',
 } );
 
 connection.connect( ( err ) => {

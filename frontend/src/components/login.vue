@@ -133,7 +133,7 @@ figure div img {
 	height: 80px;
 }
 input:hover{
-	background-color: red;
+	background-color: rgb(0, 68, 255);
 }
 form {
 	box-shadow: rgba(0, 0, 0, 0.4) 0px 2px 4px,

@@ -106,6 +106,7 @@ export default {
 				localStorage.getItem("secret") == response.data.token &&
 				localStorage.getItem("othersecret") == response.data.userId
 			) {
+				this.$store.dispatch("incstate");
 				this.$router.push("/transition");
 			} else {
 				alert("mauvaises données");

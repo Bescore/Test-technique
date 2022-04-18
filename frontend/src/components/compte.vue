@@ -21,8 +21,8 @@
 		</div>
 		<router-link  class="se_garer" to="/home">Se garer</router-link>
 		<!-- cacher quand le compte détient une place-->
-		<div  class="free_the_spot">
-			<p>Libérer la place</p>
+		<div @click="freeTheSpot()" class="free_the_spot">
+			<p>Libérer la place et payer</p>
 		</div>
 	</div>
 </template>
@@ -31,7 +31,7 @@
 import axios from "axios";
 import { mapState } from "vuex";
 export default {
-	async created() {
+	async mounted() {
 		if (!localStorage.getItem("othersecret")) {
 			alert("je ne vous reconnaît pas ! reconnectez vous");
 			this.$router.push("/");
@@ -56,10 +56,11 @@ export default {
 			this.$store.dispatch("getmaplace");
 			document.querySelector(".se_garer").style.display="none"
 			document.querySelector(".free_the_spot").style.display="flex"
-		}
+		
 		console.log(response.data[0]);
 		this.place = response.data[0].nom_de_place;
 		this.etage = response.data[0].etage;
+		}
 	},
 	data() {
 		return {
@@ -73,6 +74,15 @@ export default {
 	computed: {
 		...mapState(["maplace"]),
 	},
+	methods:{
+		async freeTheSpot(){
+			const response = await axios.put("api/test/freespot",{
+				userId:localStorage.getItem('othersecret')
+			})
+			console.log(response.data)
+			location.reload()
+		}
+	}
 };
 </script>
 
@@ -121,7 +131,7 @@ h2 {
 	margin: auto auto;
 }
 .se_garer{
-	height: 5%;
+	height: 6%;
 	text-decoration: none;
 	
 }

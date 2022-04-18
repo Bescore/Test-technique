@@ -1,6 +1,6 @@
 <template>
 	<div class="containers">
-		<h2>Garez-vous !</h2>
+		<h2 class="h_title">Garez-vous !</h2>
 		<div class="sub_contains">
 			<h4>Quelles sont les places disponible?</h4>
 
@@ -96,8 +96,8 @@ import axios from "axios";
 export default {
 	mounted() {
 		setTimeout(
-			() => (document.querySelector("h2").style.display = "none"),
-			4000
+			() => (document.querySelector(".h_title").style.display = "none"),
+			2000
 		);
 		const today = new Date();
 		var options = {
@@ -160,6 +160,7 @@ export default {
 				place: this.selected,
 				userId: localStorage.getItem("othersecret"),
 			});
+			this.$store.dispatch("incstate");
 			this.$router.push("/compte");
 			if (response.data == "place non disponible") {
 				alert("cette place de parking n'est pas disponible");
@@ -171,7 +172,7 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
-h2 {
+.h_title {
 	background-color: #2568fb;
 	margin: auto;
 	transition: 200ms ease-out;

@@ -5,8 +5,8 @@
 			<div>
 				<img src="@/assets/parked.svg" alt="image" />
 			</div>
-			<figcaption @click="connectDisplay()" id="caption">
-				Cliquez ici pour nous rejoindre
+			<figcaption class="caption" @click="connectDisplay()" id="caption">
+				Cliquez ici pour se connecter
 			</figcaption>
 		</figure>
 		<form v-on:submit.prevent class="connecter">
@@ -19,7 +19,7 @@
 				id="password"
 				placeholder="Mot de passe"
 			/><br />
-			<input @click="login()" class="btn" type="submit" />
+			<input @click="login()" class="btn" type="submit" value="Me connecter" />
 		</form>
 		<form v-on:submit.prevent class="inscrire">
 			<p>S'inscrire</p>
@@ -43,7 +43,7 @@
 				id="password_ins"
 				placeholder="Mot de passe"
 			/><br />
-			<input @click="signup()" type="submit" value="C'est partie !" />
+			<input @click="signup()" type="submit" value="M'inscrire" />
 		</form>
 		<footer>© Copyright 2022 Jm.Lator. All rights reserved.</footer>
 	</div>
@@ -162,6 +162,10 @@ form:hover > hr {
 	display: block;
 	width: 100px;
 	border: 3px solid #f3f3f3;
+}
+.caption{
+	color: #2568fb;
+	font-weight: bold;
 }
 .connecter {
 	transition: 300ms ease;

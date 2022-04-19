@@ -122,18 +122,15 @@ export default {
 </script>
 
 <style scoped>
+
 .container {
 	padding: 2px 10px;
 	background-color: #fecd45;
-	height: 92vh;
 }
 figure div img {
 	margin: 10px;
 	width: 120px;
 	height: 80px;
-}
-input:hover{
-	background-color: rgb(0, 68, 255);
 }
 form {
 	box-shadow: rgba(0, 0, 0, 0.4) 0px 2px 4px,
@@ -147,7 +144,7 @@ form input {
 	margin: 1vh;
 	outline: 0;
 	border-radius: 2px;
-	height: 4vh;
+	height: 30px;
 	width: 80%;
 	border: none;
 }

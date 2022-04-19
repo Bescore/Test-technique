@@ -53,6 +53,7 @@ export default {
 <style>
 body {
 	margin: 0 !important;
+	background-color: #fecd45 !important;
 }
 #app {
 	font-family: Avenir, Helvetica, Arial, sans-serif;

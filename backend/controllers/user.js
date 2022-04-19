@@ -43,7 +43,7 @@ exports.login = ( req, res, next ) => {
     const mail = reg_email.test( req.body.email );
     if ( pass === false || mail === false ) {
 
-        res.status( 401 ).json( "mauvaises entrées" )
+        res.status( 400 ).json( "mauvaises entrées" )
         console.log( "mauvaises données" )
     } else {
         connection.execute( `SELECT mail,mdp,idusers FROM users WHERE mail=?`, [ `${ req.body.email }` ],

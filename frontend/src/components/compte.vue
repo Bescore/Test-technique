@@ -53,11 +53,13 @@ export default {
 			document.querySelector(".se_garer").style.display="flex"
 			document.querySelector(".free_the_spot").style.display="none"
 			document.querySelector('.Etage').style.display="none"
+			
 		} else {
 			this.$store.dispatch("getmaplace");
 			document.querySelector(".se_garer").style.display="none"
 			document.querySelector(".free_the_spot").style.display="flex"
 			document.querySelector('.Etage').style.display="block"
+			document.querySelector('#se_garer').style.display="none"
 		
 		console.log(response.data[0]);
 		this.place = response.data[0].nom_de_place;

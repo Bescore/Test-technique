@@ -8,10 +8,9 @@
 			</div>
 		</div>
 		<nav @click="hideNav()">
-			<router-link v-if="isconnected == false" to="/home">Se garer</router-link>
-			<router-link v-else @click.native="logOut()" to="/"
-				>se déconnecter</router-link
-			>
+			<router-link @click.native="logOut()" to="/">se déconnecter</router-link>
+			<router-link id="se_garer" to="/home">Se garer</router-link>
+
 			<router-link to="/compte">Compte</router-link>
 			<router-link to="/">Login/Register</router-link>
 		</nav>
@@ -32,13 +31,13 @@ export default {
 		phoneMenu() {
 			const burg = document.querySelector("nav");
 			burg.classList.toggle("navigo");
-			setTimeout(()=>{burg.classList.remove("navigo")},5000)
-			
+			setTimeout(() => {
+				burg.classList.remove("navigo");
+			}, 4000);
 		},
-		hideNav(){
+		hideNav() {
 			const burg = document.querySelector("nav");
 			burg.classList.toggle("navigo");
-			
 		},
 		logOut() {
 			this.$store.dispatch("deccstate");

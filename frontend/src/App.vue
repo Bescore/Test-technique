@@ -11,7 +11,7 @@
 			<router-link @click.native="logOut()" to="/">se déconnecter</router-link>
 			<router-link id="se_garer" to="/home">Se garer</router-link>
 
-			<router-link to="/compte">Compte</router-link>
+			<router-link id="compte" to="/compte">Compte</router-link>
 			<router-link to="/">Login/Register</router-link>
 		</nav>
 		<router-view />

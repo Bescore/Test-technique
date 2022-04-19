@@ -111,7 +111,6 @@ export default {
 			} else {
 				alert("mauvaises données");
 			}
-			console.log(response.data);
 		},
 		connectDisplay() {
 			document.querySelector(".connecter").classList.toggle("connecter_2");
@@ -181,8 +180,7 @@ form:hover > hr {
 	display: none;
 }
 footer {
-	position: absolute;
-	bottom: 0;
+	margin-top: 20px;
 	text-align: center;
 	color: #2568fb;
 }

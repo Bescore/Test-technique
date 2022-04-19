@@ -41,7 +41,7 @@ exports.login = ( req, res, next ) => {
     const reg_email = /^[a-zA-Z0-9._%-]+@[a-zA-Z0-9.-]+.[a-zA-Z]{2,4}$/;
     const pass = reg_password.test( req.body.password );
     const mail = reg_email.test( req.body.email );
-    if ( pass == false || mail == false ) {
+    if ( pass === false || mail === false ) {
 
         res.status( 401 ).json( "mauvaises entrées" )
         console.log( "mauvaises données" )

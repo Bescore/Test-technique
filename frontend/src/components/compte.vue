@@ -43,6 +43,7 @@ export default {
 			this.prenom = response.data[0].prenom;
 			this.email = response.data[0].mail;
 		}
+		
 	},
 	async beforeMount() {
 		const response = await axios.post("api/auth/myPlace", {
@@ -65,6 +66,7 @@ export default {
 		this.place = response.data[0].nom_de_place;
 		this.etage = response.data[0].etage;
 		}
+		
 	},
 	data() {
 		return {
@@ -112,7 +114,7 @@ h2 {
 	box-shadow: rgba(14, 30, 37, 0.12) 0px 2px 4px 0px,
 		rgba(14, 30, 37, 0.32) 0px 2px 16px 0px;
 	border-radius: 20px;
-	margin: 5px 20px;
+	margin: 20px 20px;
 	display: flex;
 	justify-content: center;
 	align-items: center;

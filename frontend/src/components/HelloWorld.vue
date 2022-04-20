@@ -95,6 +95,7 @@
 import axios from "axios";
 export default {
 	mounted() {
+		document.querySelector('.burger').style.display='block'
 		setTimeout(
 			() => (document.querySelector(".h_title").style.display = "none"),
 			2000

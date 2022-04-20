@@ -64,6 +64,9 @@ export default {
 			this.$store.getters.incremented;
 		},
 	},
+	mounted(){
+		document.querySelector('.burger').style.display='none'
+	},
 	data() {
 		return {
 			mail1: "",

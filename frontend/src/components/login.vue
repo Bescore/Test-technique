@@ -9,6 +9,7 @@
 				Cliquez ici pour se connecter
 			</figcaption>
 		</figure>
+		<div class="danger_infos"></div>
 		<form v-on:submit.prevent class="connecter">
 			<p>Se connecter</p>
 			<hr />
@@ -65,7 +66,86 @@ export default {
 		},
 	},
 	mounted(){
+		var inputs=document.querySelectorAll('input[type=text]')
+		console.log(inputs)
 		document.querySelector('.burger').style.display='none'
+		inputs[2].addEventListener("keyup",function () {
+			var reg=/^[a-zA-Z- ]+$/;
+			var infos=document.querySelector(".danger_infos")
+			if (!reg.test(inputs[2].value) || inputs[2].value=="") {
+				inputs[2].classList.remove("danger")
+				inputs[2].classList.add("danger")
+				inputs[2].focus()
+				infos.innerText="entrée non valide"
+			}else{
+				inputs[2].classList.remove("danger")
+				infos.innerText=""
+			}
+		})
+		inputs[3].addEventListener("keyup",function () {
+			var reg=/^[a-zA-Z- ]+$/;
+			var infos=document.querySelector(".danger_infos");
+			if (!reg.test(inputs[3].value) || inputs[3].value=="") {
+				inputs[3].classList.remove("danger")
+				inputs[3].classList.add("danger")
+				infos.innerText="entrée non valide"
+			}else{
+				inputs[3].classList.remove("danger")
+				infos.innerText=""
+			}
+		})
+		inputs[4].addEventListener("keyup",function () {
+			//mail
+			var reg=/^[a-zA-Z0-9._%-]+[@]+[a-zA-Z0-9.-]+[.]+[a-zA-Z]{2,4}$/;
+			var infos=document.querySelector(".danger_infos");
+			if (!reg.test(inputs[4].value) || inputs[4].value=="") {
+				inputs[4].classList.remove("danger")
+				inputs[4].classList.add("danger")
+				infos.innerText="entrée non valide"
+			}else{
+				inputs[4].classList.remove("danger")
+				infos.innerText=""
+			}
+		})
+		inputs[0].addEventListener("keyup",function () {
+			//mail
+			var reg=/^[a-zA-Z0-9._%-]+[@]+[a-zA-Z0-9.-]+[.]+[a-zA-Z]{2,4}$/;
+			var infos=document.querySelector(".danger_infos");
+			if (!reg.test(inputs[0].value) || inputs[0].value=="") {
+				inputs[0].classList.remove("danger")
+				inputs[0].classList.add("danger")
+				infos.innerText="entrée non valide"
+			}else{
+				inputs[0].classList.remove("danger")
+				infos.innerText=""
+			}
+		})
+		inputs[5].addEventListener("keyup",function () {
+			//8 caractère, une maj, une min, un carac spéciale,, un chiffre
+			var reg=/(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[^A-Za-z0-9])(?=.{8,})/
+			var infos=document.querySelector(".danger_infos");
+			if (!reg.test(inputs[5].value) || inputs[5].value=="") {
+				inputs[5].classList.remove("danger")
+				inputs[5].classList.add("danger")
+				infos.innerText="entrée non valide"
+			}else{
+				inputs[5].classList.remove("danger")
+				infos.innerText=""
+			}
+		})
+		inputs[1].addEventListener("keyup",function () {
+			//8 caractère, une maj, une min, un carac spéciale,, un chiffre
+			var reg=/(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[^A-Za-z0-9])(?=.{8,})/
+			var infos=document.querySelector(".danger_infos");
+			if (!reg.test(inputs[1].value) || inputs[1].value=="") {
+				inputs[1].classList.remove("danger")
+				inputs[1].classList.add("danger")
+				infos.innerText="entrée non valide"
+			}else{
+				inputs[1].classList.remove("danger")
+				infos.innerText=""
+			}
+		})
 	},
 	data() {
 		return {
@@ -149,6 +229,16 @@ form input {
 	height: 30px;
 	width: 80%;
 	border: none;
+}
+.danger{
+	outline: 2px red solid;
+}
+.danger_infos{
+background-color: rgb(247, 31, 31);
+width: 80%;
+margin: 8px auto;
+color: #f3f3f3;
+transition: 300ms ease-in-out;
 }
 form input::placeholder {
 	padding: 10px;

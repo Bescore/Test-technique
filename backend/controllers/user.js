@@ -7,8 +7,8 @@ const jwt = require( 'jsonwebtoken' );
 
 exports.signup = async ( req, res, next ) => {
     //vérification d'entrées
-    const reg_password = /(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?!.*\s)(?=.*[!@#$*])/; //un mot de passe avec une majuscule,minuscule, un caractère spéciale, un chiffre, sans espace
-    const reg_email = /^[a-zA-Z0-9._%-]+@[a-zA-Z0-9.-]+.[a-zA-Z]{2,4}$/;//n'accepte que les emails régulière
+    const reg_password = /(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[^A-Za-z0-9])(?=.{8,})/; //un mot de passe avec une majuscule,minuscule, un caractère spéciale, un chiffre, sans espace
+    const reg_email = /^[a-zA-Z0-9._%-]+[@]+[a-zA-Z0-9.-]+[.]+[a-zA-Z]{2,4}$/;//n'accepte que les emails régulière
     const reg_nom = /^[a-zA-Z]+$/;//nom sans espace et sans caractère spéciale
     const reg_prenom = /^[a-zA-Z]+$/;
     const pass = reg_password.test( req.body.password );
@@ -37,8 +37,8 @@ exports.signup = async ( req, res, next ) => {
 }
 exports.login = ( req, res, next ) => {
     //verification d'entrées
-    const reg_password = /(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?!.*\s)(?=.*[!@#$*])/;
-    const reg_email = /^[a-zA-Z0-9._%-]+@[a-zA-Z0-9.-]+.[a-zA-Z]{2,4}$/;
+    const reg_password = /(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[^A-Za-z0-9])(?=.{8,})/;
+    const reg_email = /^[a-zA-Z0-9._%-]+[@]+[a-zA-Z0-9.-]+[.]+[a-zA-Z]{2,4}$/;
     const pass = reg_password.test( req.body.password );
     const mail = reg_email.test( req.body.email );
     if ( pass === false || mail === false ) {
@@ -102,9 +102,9 @@ exports.getMySpotInfos = ( req, res, next ) => {
 
 exports.changeMyinfos = ( req, res, next ) => {
     //verification des entrées
-    const reg_email = /^[a-zA-Z0-9._%-]+@[a-zA-Z0-9.-]+.[a-zA-Z]{2,4}$/;
-    const reg_nom = /^[a-zA-Z]+$/;
-    const reg_prenom = /^[a-zA-Z]+$/;
+    const reg_email = /^[a-zA-Z0-9._%-]+[@]+[a-zA-Z0-9.-]+[.]+[a-zA-Z]{2,4}$/;
+    const reg_nom = /^[a-zA-Z- ]+$/
+    const reg_prenom = /^[a-zA-Z- ]+$/
     const mail = reg_email.test( req.body.email );
     const nom = reg_nom.test( req.body.nom );
     const pren = reg_prenom.test( req.body.prenom );

@@ -85,6 +85,7 @@ export default {
 			const response = await axios.put("api/test/freespot",{
 				userId:localStorage.getItem('othersecret')
 			})
+			
 			console.log(response.data)
 			location.reload()
 		}

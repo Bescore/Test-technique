@@ -80,6 +80,7 @@
 				</p>
 				<form v-on:submit.prevent>
 					<input
+						@click="getThisSpot_by_floor()"
 						type="submit"
 						class="validate"
 						value="Se garer à cette place"
@@ -95,7 +96,7 @@
 import axios from "axios";
 export default {
 	mounted() {
-		document.querySelector('.burger').style.display='block'
+		document.querySelector(".burger").style.display = "block";
 		setTimeout(
 			() => (document.querySelector(".h_title").style.display = "none"),
 			2000
@@ -159,6 +160,22 @@ export default {
 		async getThisSpot() {
 			const response = await axios.put("api/test/spot", {
 				place: this.selected,
+				userId: localStorage.getItem("othersecret"),
+			});
+			if (response.data == "erreur") {
+				alert("vous devez d'abord cliquer et rechercher les places disponible");
+			} else {
+				console.log(response);
+				this.$store.dispatch("incstate");
+				this.$router.push("/compte");
+				if (response.data == "place non disponible") {
+					alert("cette place de parking n'est pas disponible");
+				}
+			}
+		},
+		async getThisSpot_by_floor() {
+			const response = await axios.put("api/test/spot", {
+				place: this.select_2,
 				userId: localStorage.getItem("othersecret"),
 			});
 			if (response.data == "erreur") {

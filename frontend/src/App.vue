@@ -13,6 +13,7 @@
 
 			<router-link id="compte" to="/compte">Compte</router-link>
 			<router-link to="/">Login/Register</router-link>
+			<router-link to="/payment">pay</router-link>
 		</nav>
 		<router-view />
 	</div>

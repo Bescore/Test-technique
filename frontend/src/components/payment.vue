@@ -10,8 +10,8 @@
     </tr>
 </thead>
 <tbody>
-    <tr  v-for="place_occupé in place_occupé" :key="place_occupé.id"> 
-        <td> {{ item }}</td>
+    <tr  v-for="place_occupe in place_occupe" :key="place_occupe.id"> 
+        <td> {{ place_occupe}}</td>
         <td></td>
     </tr>
 </tbody>
@@ -20,22 +20,21 @@
 </template>
 
 <script>
-import { axios } from "axios";
+import  axios  from "axios";
     export default {
        data(){
            return {
-            temps:"",
-            place_ocupé:"",
-            dû:"" ,  
+            temps:null,
+            place_occupe:null,
+            dû:null ,  
            }
        } ,
-         methods: {
-        async timeLeft() {
-           const response= axios.post("time",{
+       async mounted(){
+           const response= await axios.post("/api/test/time",{
                userId:localStorage.getItem('othersecret')
            })
+           console.log(response.data)
 
-        }
     },
     }
 </script>

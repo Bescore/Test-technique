@@ -12,7 +12,7 @@
 			<router-link id="se_garer" to="/home">Se garer</router-link>
 
 			<router-link id="compte" to="/compte">Compte</router-link>
-			<router-link v-if="isconnected==false" to="/">Login/Register</router-link>
+			<router-link v-if="isconnected==true" to="/">Login/Register</router-link>
 			<router-link to="/payment">pay</router-link>
 		</nav>
 		<router-view />

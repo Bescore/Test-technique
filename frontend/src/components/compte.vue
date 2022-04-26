@@ -83,7 +83,8 @@ export default {
 	methods:{
 		async freeTheSpot(){
 			const response = await axios.put("api/test/freespot",{
-				userId:localStorage.getItem('othersecret')
+				userId:localStorage.getItem('othersecret'),
+				spot:this.place
 			})
 			
 			console.log(response.data)

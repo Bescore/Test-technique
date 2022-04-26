@@ -3,10 +3,16 @@ const mysql = require( 'mysql2' );
 
 // create the connection to database
 const connection = mysql.createConnection( {
-    host: process.env.HOST_SQL,
+   /* host: process.env.HOST_SQL,
     user: process.env.USERNAME_SQL,
-    password: process.env.PASSWORD_SQL,   //changez les logs pour vous connecter à votre base en locale
-    database: process.env.DB_NAME,
+    password: process.env.PASSWORD_SQL, 
+    database: process.env.DB_NAME,*/
+
+    host: process.env.LOC_SQL,
+    user: process.env.USERLOC_SQL,
+    password: process.env.PASSLOC_SQL, 
+    database: process.env.DB_NAME_LOC,
+
 
 } );
 

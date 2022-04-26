@@ -6,13 +6,14 @@
 				<tr>
 					<th>Places occupé</th>
 					<th>Temps</th>
-					<th>Dû</th>
 				</tr>
 			</thead>
 			<tbody>
 				<tr v-for="place_occupe in place_occupe" :key="place_occupe.id">
-					<td>{{ place_occupe }}</td>
-					<td></td>
+					<td>{{ place_occupe.durée}}</td>
+					<td>{{ place_occupe.spot}}</td>
+				</tr>
+				<tr>
 				</tr>
 			</tbody>
 		</table>
@@ -24,16 +25,19 @@ import axios from "axios";
 export default {
 	data() {
 		return {
-			temps: null,
+			duree: null,
 			place_occupe: null,
 			dû: null,
 		};
+		
 	},
 	async mounted() {
-		const response = await axios.post("api/test/time", {
+		const response = await axios.get("api/test/time", {
+			params:{
 			userId: localStorage.getItem("othersecret"),
+			}
 		});
-		console.log(response);
+				this.place_occupe=response.data
 	},
 };
 </script>

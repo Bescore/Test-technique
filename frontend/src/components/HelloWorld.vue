@@ -16,11 +16,11 @@
 				<select v-model="selected" name="choose" id="" value="choisissez">
 					<option value="">--Les places disponible--</option>
 					<option :key="index" v-for="(place, index) in place" :value="place">
-						{{ place }}
+						{{ place.nom_de_place }}
 					</option>
 				</select>
 				<p>
-					Place sélectionné : <span>{{ selected }}</span>
+					Place sélectionné : <span>{{ selected.nom_de_place }}</span>
 				</p>
 				<form v-on:submit.prevent>
 					<input
@@ -68,7 +68,7 @@
 				<select v-model="select_2" name="choix" id="floor">
 					<option value="">--Places par étage--</option>
 					<option :key="ind" v-for="(place_par_etage, ind) in place_par_etage">
-						{{ place_par_etage }}
+						{{ place_par_etage.nom_de_place }}
 					</option>
 				</select>
 
@@ -139,27 +139,22 @@ export default {
 	},
 	methods: {
 		async getAll() {
-			const plac = [];
 			const response = await axios.get("api/test/");
-			response.data.map((element) => {
-				plac.push(element.nom_de_place);
-				this.place = plac;
-			});
+				this.place = response.data
+			
 		},
 		async getByfloor() {
-			const floor_plac = [];
+			
 			const response = await axios.post("api/test/emp_floor", {
 				etage: this.floor_picked,
 			});
-			response.data.forEach((element) => {
-				floor_plac.push(element.nom_de_place);
-				this.place_par_etage = floor_plac;
-				console.log(this.selected);
-			});
+			console.log(response.data)
+				this.place_par_etage = response.data;
+				
 		},
 		async getThisSpot() {
 			const response = await axios.put("api/test/spot", {
-				place: this.selected,
+				place: this.selected.nom_de_place,
 				userId: localStorage.getItem("othersecret"),
 			});
 			if (response.data == "erreur") {

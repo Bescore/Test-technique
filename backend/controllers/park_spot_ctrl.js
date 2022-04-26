@@ -43,7 +43,7 @@ exports.freeThespot = ( req, res, next ) => {
                     if ( result == '' ) {
                         res.status( 400 ).json( 'erreur' )
                     } else {
-                        connection.execute( `INSERT INTO payment(durée,utilisateur) VALUES(?,?)`, [ resulted[ 0 ], `${ req.body.userId }` ],
+                        connection.execute( `INSERT INTO payment(durée,utilisateur,spot) VALUES(?,?,?)`, [ Object.values(resulted[0])[0], `${ req.body.userId }`,`${ req.body.spot }` ],
                             function ( err, resulting ) {
                                 res.status( 200 ).json( resulting )
                             } )
@@ -93,13 +93,14 @@ exports.findEmptyby_floor = ( req, res, next ) => {
 
 //durée d'occupation/ attendu (userId)
 exports.timeRemaining = ( req, res, next ) => {
-    connection.execute( `SELECT timediff(now(),occupation) FROM new_place WHERE disponibilité=?`, [ `${ req.body.userId }` ],
+    connection.execute( `SELECT durée,spot FROM payment WHERE utilisateur=?`, [ `${ req.query.userId }` ],
         function ( err, result ) {
             if ( result == '' ) {
 
-                res.status( 400 ).json( "cette utilisateur n'existe pas" )
+                res.status( 400 ).json( "existe pas" )
+                
             } else {
-                res.status( 200 ).json( result[ 0 ] )
+                res.status( 200 ).json( result )
             }
         } )
 }

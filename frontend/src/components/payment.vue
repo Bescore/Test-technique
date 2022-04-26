@@ -4,13 +4,14 @@
 <table>
 <thead>
     <tr>
-        <th>Places</th>
+        <th>Places occupé</th>
         <th>Temps</th>
         <th>Dû</th>
     </tr>
 </thead>
 <tbody>
-    <tr>
+    <tr  v-for="place_occupé in place_occupé" :key="place_occupé.id"> 
+        <td> {{ item }}</td>
         <td></td>
     </tr>
 </tbody>
@@ -19,17 +20,33 @@
 </template>
 
 <script>
+import { axios } from "axios";
     export default {
-        
+       data(){
+           return {
+            temps:"",
+            place_ocupé:"",
+            dû:"" ,  
+           }
+       } ,
+         methods: {
+        async timeLeft() {
+           const response= axios.post("time",{
+               userId:localStorage.getItem('othersecret')
+           })
+
+        }
+    },
     }
 </script>
 
 <style  scoped>
 table{
     border-collapse: collapse;
+    margin: 20px auto;
 }
 table, thead,th,tr,td{
     border: solid 1px black;
-    padding: 10px;
+    padding: 15px;
 }
 </style>

@@ -264,6 +264,9 @@ form:hover > hr {
 	transition: 300ms ease;
 	display: none;
 }
+input[type='submit']:active{
+	background-color:#7e99d4 ;
+}
 .connecter_2 {
 	transition: 300ms ease-out;
 	display: block;

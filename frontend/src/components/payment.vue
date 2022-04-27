@@ -5,7 +5,8 @@
 			<thead>
 				<tr>
 					<th>Places occupées</th>
-					<th>Temps</th>
+					<th>Temps<br>
+					<span class="temps_precisions">(h/min/sec)</span></th>
 				</tr>
 			</thead>
 			<tbody>
@@ -13,10 +14,11 @@
 					<td>{{ place_occupe.spot}}</td>
 					<td>{{ place_occupe.durée}}</td>
 				</tr>
-				<tr>
-				</tr>
 			</tbody>
 		</table>
+		<div>
+			<span class="tarif">Tarif : 0.10 centimes la minute</span>
+		</div>
 	</div>
 </template>
 
@@ -53,6 +55,15 @@ th,
 tr,
 td {
 	border: solid 1px black;
+	color:#f3f3f3;
 	padding: 15px;
+	background: #2568fb;
 }
+.temps_precisions{
+	font-size: 0.7rem;
+}
+.tarif{
+	font-size: 0.8rem;
+}
+
 </style>

@@ -4,14 +4,14 @@
 		<table>
 			<thead>
 				<tr>
-					<th>Places occupé</th>
+					<th>Places occupées</th>
 					<th>Temps</th>
 				</tr>
 			</thead>
 			<tbody>
 				<tr v-for="place_occupe in place_occupe" :key="place_occupe.id">
-					<td>{{ place_occupe.durée}}</td>
 					<td>{{ place_occupe.spot}}</td>
+					<td>{{ place_occupe.durée}}</td>
 				</tr>
 				<tr>
 				</tr>

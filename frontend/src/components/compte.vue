@@ -33,7 +33,7 @@ import { mapState } from "vuex";
 export default {
 	async mounted() {
 		if (!localStorage.getItem("othersecret")) {
-			alert("je ne vous reconnaît pas ! reconnectez vous");
+			alert("je ne vous reconnaîs pas ! reconnectez vous");
 			this.$router.push("/");
 		} else {
 			const response = await axios.post("api/auth/myAccount", {

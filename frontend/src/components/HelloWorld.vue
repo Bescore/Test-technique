@@ -10,7 +10,7 @@
 						class="recherche"
 						@click="getAll()"
 						type="submit"
-						value="Cliquez pour rechercher"
+						value="Cliquez d'abord ici pour rechercher"
 					/>
 				</form>
 				<select v-model="selected" name="choose" id="" value="choisissez">

@@ -12,7 +12,7 @@
 			<router-link id="se_garer" to="/home">Se garer</router-link>
 
 			<router-link id="compte" to="/compte">Compte</router-link>
-			<router-link to="/payment">pay</router-link>
+			<router-link to="/payment">Paiment</router-link>
 		</nav>
 		<router-view />
 	</div>

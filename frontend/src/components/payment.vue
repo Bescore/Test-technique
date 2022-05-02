@@ -19,6 +19,7 @@
 		<div>
 			<span class="tarif">Tarif : 0.10 centimes la minute</span>
 		</div>
+		<h2>Dû : {{dû}}</h2>
 	</div>
 </template>
 
@@ -40,6 +41,9 @@ export default {
 			}
 		});
 				this.place_occupe=response.data
+	},
+	methods: {
+		
 	},
 };
 </script>

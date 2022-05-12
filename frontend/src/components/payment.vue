@@ -35,15 +35,28 @@ export default {
 		
 	},
 	async mounted() {
+		var tab=[]
 		const response = await axios.get("api/test/time", {
 			params:{
 			userId: localStorage.getItem("othersecret"),
 			}
 		});
 				this.place_occupe=response.data
+				response.data.forEach(element => {
+					tab.push(element.durée)
+					
+				});
+				console.log(tab)
+				tab.forEach(element => {
+					console.log((parseInt(element.split(":")[0]*3600)+
+					element.split(":")[1]*60+element.split(":")[2])*0.10)
+					//A CHANGER//
+				});
 	},
 	methods: {
-		
+		du(){
+			
+		}
 	},
 };
 </script>

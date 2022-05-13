@@ -19,7 +19,7 @@
 			<div>Email : {{ email }}</div>
 			<br />
 		</div>
-		<router-link  class="se_garer" to="/home">Se garer</router-link>
+		<router-link class="se_garer" to="/home">Se garer</router-link>
 		<!-- cacher quand le compte détient une place-->
 		<div @click="freeTheSpot()" class="free_the_spot">
 			<p>Libérer la place et payer</p>
@@ -44,7 +44,6 @@ export default {
 			this.prenom = response.data[0].prenom;
 			this.email = response.data[0].mail;
 		}
-		
 	},
 	async beforeMount() {
 		const response = await axios.post("api/auth/myPlace", {
@@ -52,22 +51,20 @@ export default {
 		});
 		if (response.data[0] == undefined) {
 			this.$store.dispatch("decmaplace");
-			document.querySelector(".se_garer").style.display="flex"
-			document.querySelector(".free_the_spot").style.display="none"
-			document.querySelector('.Etage').style.display="none"
-			
+			document.querySelector(".se_garer").style.display = "flex";
+			document.querySelector(".free_the_spot").style.display = "none";
+			document.querySelector(".Etage").style.display = "none";
 		} else {
 			this.$store.dispatch("getmaplace");
-			document.querySelector(".se_garer").style.display="none"
-			document.querySelector(".free_the_spot").style.display="flex"
-			document.querySelector('.Etage').style.display="block"
-			document.querySelector('#se_garer').style.display="none"
-		
-		console.log(response.data[0]);
-		this.place = response.data[0].nom_de_place;
-		this.etage = response.data[0].etage;
+			document.querySelector(".se_garer").style.display = "none";
+			document.querySelector(".free_the_spot").style.display = "flex";
+			document.querySelector(".Etage").style.display = "block";
+			document.querySelector("#se_garer").style.display = "none";
+
+			console.log(response.data[0]);
+			this.place = response.data[0].nom_de_place;
+			this.etage = response.data[0].etage;
 		}
-		
 	},
 	data() {
 		return {
@@ -81,17 +78,17 @@ export default {
 	computed: {
 		...mapState(["maplace"]),
 	},
-	methods:{
-		async freeTheSpot(){
-			const response = await axios.put("api/test/freespot",{
-				userId:localStorage.getItem('othersecret'),
-				spot:this.place
-			})
-			
-			console.log(response.data)
-			location.reload()
-		}
-	}
+	methods: {
+		async freeTheSpot() {
+			const response = await axios.put("api/test/freespot", {
+				userId: localStorage.getItem("othersecret"),
+				spot: this.place,
+			});
+
+			console.log(response.data);
+			location.reload();
+		},
+	},
 };
 </script>
 
@@ -103,7 +100,7 @@ h2 {
 	background-color: #fecd45;
 	height: 92.5vh;
 }
-.my_infos{
+.my_infos {
 	display: flex;
 	justify-content: flex-start;
 	align-items: flex-start;
@@ -127,8 +124,9 @@ h2 {
 	font-size: 3rem;
 }
 
-.free_the_spot,.se_garer{
-	position :absolute;
+.free_the_spot,
+.se_garer {
+	position: absolute;
 	bottom: 0;
 	display: flex;
 	align-items: center;
@@ -139,9 +137,8 @@ h2 {
 	font-weight: bold;
 	margin: auto auto;
 }
-.se_garer{
+.se_garer {
 	height: 6%;
 	text-decoration: none;
-	
 }
 </style>

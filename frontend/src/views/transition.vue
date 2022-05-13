@@ -35,7 +35,7 @@ export default {
 </script>
 
 <style scoped>
-body{
+body {
 	margin: 0 !important;
 }
 .loader img {
@@ -54,9 +54,8 @@ span {
 	display: flex;
 	justify-content: center;
 	flex-direction: column;
-	margin-top:40%;
+	margin-top: 40%;
 	background-color: #fecd45;
-
 }
 
 .mot1 {

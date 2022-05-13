@@ -19,7 +19,7 @@
 		<div>
 			<span class="tarif">Tarif : 0.10 centimes la minute</span>
 		</div>
-		<h2>Dû : {{dû}}</h2>
+		<h2>Dû : {{dû}} €</h2>
 	</div>
 </template>
 
@@ -36,22 +36,23 @@ export default {
 	},
 	async mounted() {
 		var tab=[]
+		var total=0
 		const response = await axios.get("api/test/time", {
 			params:{
 			userId: localStorage.getItem("othersecret"),
 			}
 		});
+		//calcule le coût total du//
 				this.place_occupe=response.data
 				response.data.forEach(element => {
-					tab.push(element.durée)
-					
+					var h_in_sec=parseInt(element.durée.split(":")[0]*3600);
+					var min_in_sec=parseInt(element.durée.split(":")[1]*60);
+					var sec_in_sec=element.durée.split(":")[2];
+					 total=(h_in_sec+min_in_sec+sec_in_sec)*0.01;
 				});
-				console.log(tab)
-				tab.forEach(element => {
-					console.log((parseInt(element.split(":")[0]*3600)+
-					element.split(":")[1]*60+element.split(":")[2])*0.10)
-					//A CHANGER//
-				});
+				
+				this.dû=total
+
 	},
 	methods: {
 		du(){

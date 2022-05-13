@@ -53,7 +53,6 @@ export default {
 		};
 	},
 	async mounted() {
-		var tab = [];
 		var total = 0;
 		const response = await axios.get("api/test/time", {
 			params: {
@@ -67,12 +66,10 @@ export default {
 			var min_in_sec = parseInt(element.durée.split(":")[1] * 60);
 			var sec_in_sec = parseInt(element.durée.split(":")[2]);
 			var tot = (h_in_sec + min_in_sec + sec_in_sec) * 0.001;
-			total = tot;
+			total += tot;
+			
 		});
 		this.dû = total.toFixed(2);
-	},
-	methods: {
-		du() {},
 	},
 };
 </script>
@@ -81,7 +78,6 @@ export default {
 table {
 	border-collapse: collapse;
 	margin: 20px auto;
-	overflow-y: auto;
 }
 table,
 thead,

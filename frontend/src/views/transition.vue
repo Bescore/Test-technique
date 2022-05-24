@@ -89,4 +89,10 @@ span {
 	justify-content: center;
 	gap: 8px;
 }
+@media all and (min-width:426px)  {
+	.container_transit{
+		width: 400px;
+		margin: auto;
+	}
+}
 </style>

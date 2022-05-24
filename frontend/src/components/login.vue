@@ -284,4 +284,13 @@ footer {
 	text-align: center;
 	color: #2568fb;
 }
+/*****Media queries********/
+
+@media all and (min-width:426px)  {
+	.container {
+	
+	width: 400px;
+	margin: auto;
+}
+}
 </style>

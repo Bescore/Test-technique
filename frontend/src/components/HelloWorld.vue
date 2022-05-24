@@ -273,4 +273,19 @@ form#par_etage .recherche {
 footer {
 	padding: 10px;
 }
+/*****************************/
+@media all and (min-width:426px)  {
+	.containers {
+	width: 400px;
+	margin: auto;
+}
+.sub_contains {
+	background-color: #fecd45;
+	border-radius: 20px;
+	padding: 15px;
+	z-index: 0;
+	box-shadow: rgba(0, 0, 0, 0.3) 0px 19px 38px,
+		rgba(0, 0, 0, 0.22) 0px 15px 12px;
+}
+}
 </style>

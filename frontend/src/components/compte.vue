@@ -141,4 +141,24 @@ h2 {
 	height: 6%;
 	text-decoration: none;
 }
+@media all and (min-width:426px)  {
+	.cont_compt {
+	width: 400px;
+	margin: auto;
+}
+.free_the_spot,
+.se_garer {
+	position: absolute;
+	bottom: 20px;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	background-color: #2568fb;
+	width: 400px;
+	color: #fecd45;
+	font-weight: bold;
+	margin: auto auto;
+	border-radius:20px ;
+}
+}
 </style>

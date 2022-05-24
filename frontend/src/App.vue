@@ -119,5 +119,39 @@ nav a.router-link-exact-active {
 	position: sticky;
 	top: 0;
 }
+/************************/
+@media all and (min-width:426px)  {
+.phoneMenu_cont {
+	width: 400px;
+	margin: auto;
+}
+nav {
+	padding: 25px;
+	display: flex;
+	align-items: center;
+	background-color: #2568fb;
+	justify-content: center;
+	gap: 40px;
+	flex-direction: column;
+	width: 10%;
+	height: 30%;
+	margin: auto;
+	position: fixed;
+	z-index: 5;
+	top: 25%;
+	right: 32%;
+	transform: translateX(50%);
+	transition: 200ms ease-out;
+	border-radius:20px ;
+}
+nav a {
+	font-weight: bold;
+	color: #fecd45;
+	text-decoration: none;
+}
+.navigo {
+	display: none;
+}
+}
 
 </style>

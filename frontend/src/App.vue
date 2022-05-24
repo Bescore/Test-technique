@@ -138,9 +138,10 @@ nav {
 	margin: auto;
 	position: fixed;
 	z-index: 5;
-	top: 25%;
-	right: 32%;
-	transform: translateX(50%);
+	top: 50%;
+	left: 50%;
+	transform: translateY(-250%);
+	
 	transition: 200ms ease-out;
 	border-radius:20px ;
 }
@@ -150,7 +151,23 @@ nav a {
 	text-decoration: none;
 }
 .navigo {
-	display: none;
+	padding: 25px;
+	display: flex;
+	align-items: center;
+	background-color: #2568fb;
+	justify-content: center;
+	gap: 40px;
+	flex-direction: column;
+	width: 10%;
+	height: 30%;
+	margin: auto;
+	position: fixed;
+	z-index: 5;
+	top: 20%;
+	left: 50%;
+	transform: translateY(0%);
+	transition: 200ms ease-out;
+	border-radius:20px ;
 }
 }
 

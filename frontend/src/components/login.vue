@@ -204,7 +204,6 @@ export default {
 </script>
 
 <style scoped>
-
 .container {
 	padding: 2px 10px;
 	background-color: #fecd45;

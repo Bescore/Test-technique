@@ -17,7 +17,7 @@
 <script>
 import axios from "axios";
 export default {
-	async beforeMount() {
+	async mounted() {
 		const response = await axios.post("/api/test/verifs", {
 			userId: localStorage.getItem("othersecret"),
 		});

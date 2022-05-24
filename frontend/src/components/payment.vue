@@ -52,7 +52,7 @@ export default {
 			dû: null,
 		};
 	},
-	async mounted() {
+	async beforeMount() {
 		var total = 0;
 		const response = await axios.get("api/test/time", {
 			params: {

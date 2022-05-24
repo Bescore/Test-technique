@@ -65,7 +65,7 @@ export default {
 			this.$store.getters.incremented;
 		},
 	},
-	mounted(){
+	beforeMount(){
 		var inputs=document.querySelectorAll('input[type=text]')
 		console.log(inputs)
 		document.querySelector('.burger').style.display='none'

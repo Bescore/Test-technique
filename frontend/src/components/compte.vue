@@ -86,7 +86,7 @@ export default {
 			});
 
 			console.log(response.data);
-			location.reload();
+			this.$router.push("/payment");
 		},
 	},
 };

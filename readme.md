@@ -6,7 +6,7 @@ Un projet test suite à un entretien que j'ai pu avoir, l'idée est de créer un
 
 --mysql pour la base de donnée
 
-##Le projet se situe sur la branche "Backend" du repo.
+
 
 Le front est minimaliste, j'ai construis les pages en mobiles first, intégré le login et régister, tout prends forme progressivement.
 

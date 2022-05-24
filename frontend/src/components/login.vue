@@ -65,87 +65,87 @@ export default {
 			this.$store.getters.incremented;
 		},
 	},
-	beforeMount(){
-		var inputs=document.querySelectorAll('input[type=text]')
-		console.log(inputs)
-		document.querySelector('.burger').style.display='none'
-		inputs[2].addEventListener("keyup",function () {
-			var reg=/^[a-zA-Z- ]+$/;
-			var infos=document.querySelector(".danger_infos")
-			if (!reg.test(inputs[2].value) || inputs[2].value=="") {
-				inputs[2].classList.remove("danger")
-				inputs[2].classList.add("danger")
-				inputs[2].focus()
-				infos.innerText="entrée non valide"
-			}else{
-				inputs[2].classList.remove("danger")
-				infos.innerText=""
+	mounted() {
+		var inputs = document.querySelectorAll("input[type=text]");
+		console.log(inputs);
+		document.querySelector(".burger").style.display = "none";
+		inputs[2].addEventListener("keyup", function () {
+			var reg = /^[a-zA-Z- ]+$/;
+			var infos = document.querySelector(".danger_infos");
+			if (!reg.test(inputs[2].value) || inputs[2].value == "") {
+				inputs[2].classList.remove("danger");
+				inputs[2].classList.add("danger");
+				inputs[2].focus();
+				infos.innerText = "entrée non valide";
+			} else {
+				inputs[2].classList.remove("danger");
+				infos.innerText = "";
 			}
-		})
-		inputs[3].addEventListener("keyup",function () {
-			var reg=/^[a-zA-Z- ]+$/;
-			var infos=document.querySelector(".danger_infos");
-			if (!reg.test(inputs[3].value) || inputs[3].value=="") {
-				inputs[3].classList.remove("danger")
-				inputs[3].classList.add("danger")
-				infos.innerText="entrée non valide"
-			}else{
-				inputs[3].classList.remove("danger")
-				infos.innerText=""
+		});
+		inputs[3].addEventListener("keyup", function () {
+			var reg = /^[a-zA-Z- ]+$/;
+			var infos = document.querySelector(".danger_infos");
+			if (!reg.test(inputs[3].value) || inputs[3].value == "") {
+				inputs[3].classList.remove("danger");
+				inputs[3].classList.add("danger");
+				infos.innerText = "entrée non valide";
+			} else {
+				inputs[3].classList.remove("danger");
+				infos.innerText = "";
 			}
-		})
-		inputs[4].addEventListener("keyup",function () {
+		});
+		inputs[4].addEventListener("keyup", function () {
 			//mail
-			var reg=/^[a-zA-Z0-9._%-]+[@]+[a-zA-Z0-9.-]+[.]+[a-zA-Z]{2,4}$/;
-			var infos=document.querySelector(".danger_infos");
-			if (!reg.test(inputs[4].value) || inputs[4].value=="") {
-				inputs[4].classList.remove("danger")
-				inputs[4].classList.add("danger")
-				infos.innerText="entrée non valide"
-			}else{
-				inputs[4].classList.remove("danger")
-				infos.innerText=""
+			var reg = /^[a-zA-Z0-9._%-]+[@]+[a-zA-Z0-9.-]+[.]+[a-zA-Z]{2,4}$/;
+			var infos = document.querySelector(".danger_infos");
+			if (!reg.test(inputs[4].value) || inputs[4].value == "") {
+				inputs[4].classList.remove("danger");
+				inputs[4].classList.add("danger");
+				infos.innerText = "entrée non valide";
+			} else {
+				inputs[4].classList.remove("danger");
+				infos.innerText = "";
 			}
-		})
-		inputs[0].addEventListener("keyup",function () {
+		});
+		inputs[0].addEventListener("keyup", function () {
 			//mail
-			var reg=/^[a-zA-Z0-9._%-]+[@]+[a-zA-Z0-9.-]+[.]+[a-zA-Z]{2,4}$/;
-			var infos=document.querySelector(".danger_infos");
-			if (!reg.test(inputs[0].value) || inputs[0].value=="") {
-				inputs[0].classList.remove("danger")
-				inputs[0].classList.add("danger")
-				infos.innerText="entrée non valide"
-			}else{
-				inputs[0].classList.remove("danger")
-				infos.innerText=""
+			var reg = /^[a-zA-Z0-9._%-]+[@]+[a-zA-Z0-9.-]+[.]+[a-zA-Z]{2,4}$/;
+			var infos = document.querySelector(".danger_infos");
+			if (!reg.test(inputs[0].value) || inputs[0].value == "") {
+				inputs[0].classList.remove("danger");
+				inputs[0].classList.add("danger");
+				infos.innerText = "entrée non valide";
+			} else {
+				inputs[0].classList.remove("danger");
+				infos.innerText = "";
 			}
-		})
-		inputs[5].addEventListener("keyup",function () {
+		});
+		inputs[5].addEventListener("keyup", function () {
 			//8 caractère, une maj, une min, un carac spéciale,, un chiffre
-			var reg=/(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[^A-Za-z0-9])(?=.{8,})/
-			var infos=document.querySelector(".danger_infos");
-			if (!reg.test(inputs[5].value) || inputs[5].value=="") {
-				inputs[5].classList.remove("danger")
-				inputs[5].classList.add("danger")
-				infos.innerText="entrée non valide"
-			}else{
-				inputs[5].classList.remove("danger")
-				infos.innerText=""
+			var reg = /(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[^A-Za-z0-9])(?=.{8,})/;
+			var infos = document.querySelector(".danger_infos");
+			if (!reg.test(inputs[5].value) || inputs[5].value == "") {
+				inputs[5].classList.remove("danger");
+				inputs[5].classList.add("danger");
+				infos.innerText = "entrée non valide";
+			} else {
+				inputs[5].classList.remove("danger");
+				infos.innerText = "";
 			}
-		})
-		inputs[1].addEventListener("keyup",function () {
+		});
+		inputs[1].addEventListener("keyup", function () {
 			//8 caractère, une maj, une min, un carac spéciale,, un chiffre
-			var reg=/(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[^A-Za-z0-9])(?=.{8,})/
-			var infos=document.querySelector(".danger_infos");
-			if (!reg.test(inputs[1].value) || inputs[1].value=="") {
-				inputs[1].classList.remove("danger")
-				inputs[1].classList.add("danger")
-				infos.innerText="entrée non valide"
-			}else{
-				inputs[1].classList.remove("danger")
-				infos.innerText=""
+			var reg = /(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[^A-Za-z0-9])(?=.{8,})/;
+			var infos = document.querySelector(".danger_infos");
+			if (!reg.test(inputs[1].value) || inputs[1].value == "") {
+				inputs[1].classList.remove("danger");
+				inputs[1].classList.add("danger");
+				infos.innerText = "entrée non valide";
+			} else {
+				inputs[1].classList.remove("danger");
+				infos.innerText = "";
 			}
-		})
+		});
 	},
 	data() {
 		return {
@@ -167,7 +167,7 @@ export default {
 			});
 			console.log(response.data);
 			const token = response.data.token;
-			const userId=response.data.userId
+			const userId = response.data.userId;
 			localStorage.setItem("secret", token);
 			localStorage.setItem("othersecret", userId);
 			if (localStorage.getItem("secret") == token) {
@@ -229,15 +229,15 @@ form input {
 	width: 80%;
 	border: none;
 }
-.danger{
+.danger {
 	outline: 2px red solid;
 }
-.danger_infos{
-background-color: rgb(247, 31, 31);
-width: 80%;
-margin: 8px auto;
-color: #f3f3f3;
-transition: 300ms ease-in-out;
+.danger_infos {
+	background-color: rgb(247, 31, 31);
+	width: 80%;
+	margin: 8px auto;
+	color: #f3f3f3;
+	transition: 300ms ease-in-out;
 }
 form input::placeholder {
 	padding: 10px;
@@ -255,7 +255,7 @@ form:hover > hr {
 	width: 100px;
 	border: 3px solid #f3f3f3;
 }
-.caption{
+.caption {
 	color: #2568fb;
 	font-weight: bold;
 }
@@ -263,8 +263,8 @@ form:hover > hr {
 	transition: 300ms ease;
 	display: none;
 }
-input[type='submit']:active{
-	background-color:#7e99d4 ;
+input[type="submit"]:active {
+	background-color: #7e99d4;
 }
 .connecter_2 {
 	transition: 300ms ease-out;
@@ -285,11 +285,10 @@ footer {
 }
 /*****Media queries********/
 
-@media all and (min-width:426px)  {
+@media all and (min-width: 426px) {
 	.container {
-	
-	width: 400px;
-	margin: auto;
-}
+		width: 400px;
+		margin: auto;
+	}
 }
 </style>

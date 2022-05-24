@@ -31,9 +31,6 @@ export default {
 		phoneMenu() {
 			const burg = document.querySelector("nav");
 			burg.classList.toggle("navigo");
-			setTimeout(() => {
-				burg.classList.remove("navigo");
-			}, 4000);
 		},
 		hideNav() {
 			const burg = document.querySelector("nav");

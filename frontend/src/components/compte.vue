@@ -31,7 +31,7 @@
 import axios from "axios";
 import { mapState } from "vuex";
 export default {
-	async beforeMount() {
+	async mounted() {
 		document.querySelector(".burger").style.display = "block";
 		if (!localStorage.getItem("othersecret")) {
 			alert("je ne vous reconnaîs pas ! reconnectez vous");

@@ -17,6 +17,6 @@ Il est possible que le lien ne soit plus valide, le projet peut évoluer à tout
 👇🤞
 https://cool-praline-82e1db.netlify.app
 
-L'application n'est plus fonctionnelle suite au changement récent de politique d'heroku. il me ffaudra réhéberger la partie backend .
+L'application n'est plus fonctionnelle en cliquant sur ce lien suite au changement récent de politique d'heroku. il me ffaudra réhéberger la partie backend .
 
 

@@ -15,8 +15,10 @@ En verité ce n'est pas si simple quand on apprends ! 😄
 Il est possible que le lien ne soit plus valide, le projet peut évoluer à tout moment sachant que j'essaie d'appliquer ce que j'apprends en permanance.
 
 👇🤞
-https://cool-praline-82e1db.netlify.app
+⛔https://cool-praline-82e1db.netlify.app ⛔
 
 L'application n'est plus fonctionnelle en cliquant sur ce lien suite au changement récent de politique d'heroku. il me ffaudra réhéberger la partie backend .
+
+
 
 

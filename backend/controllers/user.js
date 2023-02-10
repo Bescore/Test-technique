@@ -49,7 +49,7 @@ exports.login = ( req, res, next ) => {
         connection.execute( `SELECT mail,mdp,idusers FROM users WHERE mail=?`, [ `${ req.body.email }` ],
             function ( err, result ) {
                 if ( err ) {
-                    console.log(err)
+                    console.log( err )
                 }
                 if ( result == '' ) {
                     console.log( "pas de resultat" )
@@ -90,11 +90,11 @@ exports.getMyinfos = ( req, res, next ) => {
 //afficher les informations de la place acquise par l'utilisateur
 
 exports.getMySpotInfos = ( req, res, next ) => {
-    connection.execute( `SELECT * FROM new_place C,users U WHERE C.disponibilité=? AND u.idusers=?`, [ `${ req.body.userId }`,`${ req.body.userId }` ],
-    function ( err, resulted ) {
-        res.status( 200 ).json( resulted )
-    }
-)
+    connection.execute( `SELECT * FROM new_place C,users U WHERE C.disponibilité=? AND u.idusers=?`, [ `${ req.body.userId }`, `${ req.body.userId }` ],
+        function ( err, resulted ) {
+            res.status( 200 ).json( resulted )
+        }
+    )
 }
 
 

@@ -101,7 +101,7 @@ export default {
 			if (!reg.test(inputs[4].value) || inputs[4].value == "") {
 				inputs[4].classList.remove("danger");
 				inputs[4].classList.add("danger");
-				infos.innerText = "entrée non valide";
+				infos.innerText = "entrée non valide mail";
 			} else {
 				inputs[4].classList.remove("danger");
 				infos.innerText = "";

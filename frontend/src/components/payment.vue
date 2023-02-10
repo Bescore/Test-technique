@@ -67,7 +67,6 @@ export default {
 			var sec_in_sec = parseInt(element.durée.split(":")[2]);
 			var tot = (h_in_sec + min_in_sec + sec_in_sec) * 0.001;
 			total += tot;
-			
 		});
 		this.dû = total.toFixed(2);
 	},
